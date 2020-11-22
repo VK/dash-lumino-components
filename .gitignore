@@ -284,3 +284,4 @@ env/
 Project.toml
 NAMESPACE
 DESCRIPTION
+.Rbuildignore
