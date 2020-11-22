@@ -1,4 +1,8 @@
 # Dash Lumino Components
+![Publish release](https://github.com/VK/dash-lumino-components/workflows/Publish%20release/badge.svg)
+[![PyPI](https://img.shields.io/pypi/v/dash-lumino-components?logo=pypi)](https://pypi.org/project/dash-lumino-components)
+[![npm](https://img.shields.io/npm/v/dash_lumino_components.svg?logo=npm)](https://www.npmjs.com/package/dash_lumino_components)
+
 
 This package integrates [Lumino Widgets](https://github.com/jupyterlab/lumino), the basis of [JupyterLab](https://github.com/jupyterlab/jupyterlab), into [Plotly's Dash](https://github.com/plotly/dash).
 
