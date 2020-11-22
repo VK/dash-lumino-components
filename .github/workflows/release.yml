@@ -1,14 +1,14 @@
 name: Publish release
 
 on:
-  pull_request:
+  release:
     types:
-      - closed
+      - created
 
 jobs:
   release:
     name: Release
-    if: ${{ github.event.pull_request.merged && startsWith(github.head_ref, 'release/') }}
+    if: ${{ startsWith(github.head_ref, 'release/') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -62,7 +62,7 @@ jobs:
 
   prerelease:
     name: Prerelease
-    if: ${{ github.event.pull_request.merged && startsWith(github.head_ref, 'prerelease/') }}
+    if: ${{ startsWith(github.head_ref, 'prerelease/') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
