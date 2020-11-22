@@ -1,0 +1,7 @@
+include dash_lumino_components/dash_lumino_components.min.js
+include dash_lumino_components/dash_lumino_components.min.js.map
+include dash_lumino_components/metadata.json
+include dash_lumino_components/package-info.json
+include README.md
+include LICENSE
+include package.json
