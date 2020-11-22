@@ -5,7 +5,6 @@ build-backend = "flit_core.buildapi"
 [tool.flit.metadata]
 dist-name = "dash-lumino-components"
 module = "dash_lumino_components"
-description = "Lumino (JupyterLab) components for Plotly Dash"
 author = "VK"
 author-email = "viktor@krueckl.de"
 home-page = "https://github.com/VK/dash-lumino-components/"
