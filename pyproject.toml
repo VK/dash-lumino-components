@@ -1,0 +1,66 @@
+[build-system]
+requires = ["flit_core >=2,<4"]
+build-backend = "flit_core.buildapi"
+
+[tool.flit.metadata]
+dist-name = "dash-lumino-components"
+module = "dash_lumino_components"
+description = "Lumino (JupyterLab) components for Plotly Dash"
+author = "VK"
+author-email = "viktor@krueckl.de"
+home-page = "https://github.com/VK/dash-lumino-components/"
+classifiers = [
+    "Framework :: Dash",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 2.7",
+    "Programming Language :: Python :: 3.5",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8"
+]
+requires = ["dash>=1.9.0"]
+description-file = "landing-page.md"
+requires-python = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, <4"
+
+
+[tool.flit.metadata.urls]
+Source = "https://github.com/VK/dash-lumino-components/"
+"Bug Reports" = "https://github.com/VK/dash-lumino-components/issues"
+
+[tool.flit.sdist]
+include = [
+    "dash_lumino_components/*.py",
+    "dash_lumino_components/*.js",
+    "dash_lumino_components/*.json",
+    "dash_lumino_components/*.ttf",
+    "dash_lumino_components/*.eot",
+    "dash_lumino_components/*.woff",
+    "dash_lumino_components/*.woff2",
+    "dash_lumino_components/*.png",
+    "dash_lumino_components/*.svg"
+]
+exclude = [
+    ".github",
+    "demo",
+    "docs",
+    "examples",
+    "R",
+    "readme-images",
+    "src",
+    "tests",
+    "webpack",
+    ".babelrc",
+    ".gitignore",
+    ".prettierrc",
+    ".Rbuildignore",
+    "gulpfile.js",
+    "jest.config.js",
+    "noxfile.py",
+    "package.json",
+    "package-lock.json",
+    "tasks.py"
+]
+
+[tool.black]
+line-length = 79
+exclude = "dash_lumino_components/|node_modules"
