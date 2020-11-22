@@ -5,6 +5,7 @@ on:
     branches: [ master ]
 
 jobs:
+  release:
     name: Release
     if: ${{ startsWith(github.event.head_commit.message, 'release') }}
     runs-on: ubuntu-latest
