@@ -1,14 +1,13 @@
 name: Publish release
 
 on:
-  release:
-    types:
-      - created
+  push:
+    branches: [ master ]
 
 jobs:
   release:
     name: Release
-    if: ${{ startsWith(github.head_ref, 'release/') }}
+    if: ${{ startsWith(github.event.head_commit.message, 'release/') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -62,7 +61,7 @@ jobs:
 
   prerelease:
     name: Prerelease
-    if: ${{ startsWith(github.head_ref, 'prerelease/') }}
+    if: ${{ startsWith(github.event.head_commit.message, 'prerelease/') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
