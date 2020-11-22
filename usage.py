@@ -13,7 +13,18 @@ external_stylesheets = [
 
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
-app.layout = html.Div([])
+
+menus = [dlc.Menu(id="openMenu", title="Widgets", children=[
+    dlc.Command(id="com:openwidget", label="Open", icon="fa fa-plus"),
+    dlc.Separator(),
+    dlc.Menu(id="extraMenu", title="Extra", children=[
+        dlc.Command(id="com:closeall", label="Close All", icon="fa fa-minus"),
+    ])
+])]
+
+app.layout = html.Div([
+    dlc.MenuBar(id='menuBar', children=menus)
+])
 
 
 

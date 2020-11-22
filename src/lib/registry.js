@@ -13,5 +13,11 @@ import {
 var commands = new CommandRegistry();
 
 
+/**
+ * A dictionary of all Dash Lumino components
+ */
+var components = new Object();
 
-export { commands };
+
+
+export { commands, components };
