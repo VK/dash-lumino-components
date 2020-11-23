@@ -8,6 +8,8 @@ import {
 
 /**
  * A widget which displays items as a canonical menu.
+ * 
+ * https://jupyterlab.github.io/lumino/widgets/classes/menu.html
  */
 export default class Menu extends DashLuminoComponent {
 
@@ -18,7 +20,6 @@ export default class Menu extends DashLuminoComponent {
         let menu = super.register(new l_Menu({ commands }));
 
         // set the properties
-        menu.id = props.id;
         menu.title.label = props.title;
         menu.title.iconClass = props.iconClass;
 
@@ -68,7 +69,7 @@ Menu.propTypes = {
     /**
      * The title of the menu
      */
-    title: PropTypes.string.isRequired,
+    title: PropTypes.string,
 
     /**
      * The icon class of the menu
@@ -76,7 +77,7 @@ Menu.propTypes = {
     iconClass: PropTypes.string,
 
     /**
-     * An array of the menu items in the menu.
+     * An array of the menu items (dlc.Command | dlc.Menu | dlc.Separator)
      */
     children: PropTypes.node,
 };

@@ -3,7 +3,9 @@ import { Component } from 'react';
 import { commands } from '../registry';
 
 /**
- * A dummy widget to create a seperation in menus
+ * A dummy widget to create a seperation in menus.
+ * 
+ * This is actually not a component of lumino.
  */
 export default class Separator extends Component {
 

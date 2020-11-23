@@ -6,7 +6,9 @@ import {
 } from '@lumino/widgets';
 
 /**
- * A widget which provides a flexible docking area for widgets. The namespace for the DockPanel class statics.
+ * A widget which displays menus as a canonical menu bar.
+ * 
+ * https://jupyterlab.github.io/lumino/widgets/classes/menubar.html
  */
 export default class MenuBar extends DashLuminoComponent {
 
@@ -14,10 +16,7 @@ export default class MenuBar extends DashLuminoComponent {
         super(props);
 
         // register a new MenuBar
-        super.register(new l_MenuBar);
-
-        // the menubar is always added to the dom directly
-        super.attachToDom();
+        super.register(new l_MenuBar, true);
 
         // add the children of the component to the menus of the MenuBar
         if (this.props.children) {
@@ -44,10 +43,10 @@ MenuBar.propTypes = {
     /**
      * ID of the widget
      */
-    id: PropTypes.string,
+    id: PropTypes.string.isRequired,
 
     /**
-     * The menus
+     * An array of the menus (dlc.Menu)
      */
     children: PropTypes.node
 };

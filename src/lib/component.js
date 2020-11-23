@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { components } from './registry.js';
+import { components, get_uuid } from './registry.js';
 import { is } from 'ramda';
 
 import {
@@ -20,19 +20,25 @@ export default class DashLuminoComponent extends Component {
     /**
      * Register a new lumino component in the regirstry
      * @param {*} luminoComponent 
+     * @param {*} attachToDom
      */
-    register(luminoComponent) {
+    register(luminoComponent, attachToDom = false) {
         this.luminoComponent = luminoComponent;
 
-        luminoComponent.id = this.props.id;
+        // create an unique id if not available
+        this.id = (this.props.id || this.props.id != undefined) ? this.props.id : get_uuid();
 
-        components[this.props.id] = {
+        luminoComponent.id = this.id;
+
+        components[this.id] = {
             "dash": this,
             "lumino": luminoComponent,
             "div": undefined
         }
 
-        console.log(components);
+        if (attachToDom) {
+            this.attachToDom();
+        }
 
         return luminoComponent;
     }
@@ -43,29 +49,27 @@ export default class DashLuminoComponent extends Component {
      */
     attachToDom() {
         l_Widget.attach(this.luminoComponent, document.body);
-        components[this.props.id]["div"] = this.luminoComponent.node;
-        console.log(components);
+        components[this.id]["div"] = this.luminoComponent.node;
     }
 
     /**
      * Wait untiul the dash lumino component is created and then apply the custom function
      * This is usually used to create the lumino objects hierarchy, like widgets in panels, ...
      * 
-     * @param {*} dashComponent 
+     * @param {*} reactComponent 
      * @param {*} func(target_component, child_component)
      */
-    applyAfterCreation(dashComponent, func) {
+    applyAfterCreation(reactComponent, func) {
         var i = 0;
-        console.log("applyAfterCreation");
 
-        let target_component = components[this.props.id];
+        let target_component = components[this.id];
 
 
 
         function updateLoop() {
             setTimeout(function () {
                 i++;
-                let child_component = components[dashComponent.props._dashprivate_layout.props.id];
+                let child_component = components[reactComponent.props._dashprivate_layout.props.id];
                 if (target_component && child_component) {
                     func(target_component, child_component);
                 } else if (i < 50) {
@@ -102,5 +106,11 @@ DashLuminoComponent.propTypes = {
     /**
      * ID of the widget
      */
-    id: PropTypes.string,
+    id: PropTypes.string.isRequired,
+
+    /**
+     * Dash-assigned callback that should be called to report property changes
+     * to Dash, to make them available for callbacks.
+     */
+    setProps: PropTypes.func
 };
