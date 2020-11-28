@@ -6,8 +6,7 @@ import {
 } from '@lumino/widgets';
 
 /**
- * A widget which displays menus as a canonical menu bar.
- * 
+ * A widget which displays menus as a canonical menu bar.  
  * {@link https://jupyterlab.github.io/lumino/widgets/classes/menubar.html}
  * @hideconstructor
  * 

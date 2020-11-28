@@ -1,10 +1,15 @@
 {
     "tags": {
         "allowUnknownTags": true,
-        "dictionaries": ["jsdoc","closure"]
+        "dictionaries": [
+            "jsdoc",
+            "closure"
+        ]
     },
     "source": {
-        "include": ["src/lib/components/"],
+        "include": [
+            "src/lib/components/"
+        ],
         "includePattern": ".+\\.js(doc|x)?$",
         "excludePattern": "(^|\\/|\\\\)_"
     },
@@ -13,11 +18,17 @@
     ],
     "templates": {
         "cleverLinks": true,
-        "monospaceLinks": true
+        "monospaceLinks": true,
+        "systemName": "Dash Lumino Components",
+        "systemSummary": "Integrate Lumino Widgets into Plotly's Dash to build interactive web applications",
+        "collapseSymbols": false,
+        "showTableOfContents": false
     },
     "opts": {
         "destination": "docs",
         "recurse": true,
-        "readme": "README.md"
+        "readme": "README.md",
+        "private": false,
+        "template": "./node_modules/foodoc/template"
     }
 }
