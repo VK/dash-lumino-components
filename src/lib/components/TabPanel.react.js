@@ -7,17 +7,35 @@ import {
 } from '@lumino/widgets';
 
 /**
- * A widget which combines a TabBar and a StackedPanel.
- * 
- * https://jupyterlab.github.io/lumino/widgets/classes/tabpanel.html
+ * A widget which combines a TabBar and a StackedPanel.  
+ * {@link https://jupyterlab.github.io/lumino/widgets/classes/tabpanel.html}
  * 
  * This is a simple panel which handles the common case of a tab bar placed
  * next to a content area. The selected tab controls the widget which is
  * shown in the content area.
  * For use cases which require more control than is provided by this panel,
  * the TabBar widget may be used independently.
+ * @hideconstructor
+ * 
+ * @example
+ * import dash_lumino_components as dlc
+ * import dash_html_components as html
+ * import dash_bootstrap_components as dbc
+ * 
+ * dlc.TabPanel([
+ *     dlc.Panel(
+ *         html.Div([
+ *             dbc.Button("Open Plot", id="button2", style={"width": "100%"})
+ *         ]),
+ *         id="tab-panel-A"
+ *         label="Plots",
+ *         icon="fa fa-bar-chart")
+ *     ],
+ *     id='tab-panel-left',
+ *     tabPlacement="left",
+ *     allowDeselect=True)
  */
-export default class TabPanel extends DashLuminoComponent {
+class TabPanel extends DashLuminoComponent {
 
     constructor(props) {
         super(props);
@@ -81,6 +99,7 @@ export default class TabPanel extends DashLuminoComponent {
     /**
      * this callback hids the stackedpanel if no tab is selected
      * to make everything seamless, the resizing is handeled here
+     * @private
      */
     _onTabIndexChanged() {
         if (components[this.id] == null)
@@ -125,50 +144,69 @@ TabPanel.defaultProps = {
     currentIndex: -1
 };
 
+/**
+ * @typedef
+ * @enum {}
+ */
 TabPanel.propTypes = {
     /**
      * ID of the widget
+     * @type {string}
      */
     id: PropTypes.string.isRequired,
 
     /**
      * the placement of the tab bar relative to the content. ("left" | "right" | "top" | "bottom")
+     * @type {string}
      */
     tabPlacement: PropTypes.string,
 
     /**
      * whether the tabs are movable by the user
+     * @type {boolean}
      */
     tabsMovable: PropTypes.bool,
 
     /**
      * bool if all tabs can be deselected
+     * @type {boolean}
      */
     allowDeselect: PropTypes.bool,
 
     /**
      * the default width or height of the tab panel content
+     * @type {number}
      */
     width: PropTypes.number,
 
     /**
      * bool if the object has to be added to the dom directly
+     * @type {boolean}
      */
     addToDom: PropTypes.bool,
 
     /**
      * The widgets
+     * @type {Panel[]}
      */
     children: PropTypes.node,
 
     /**
      * Get the index of the currently selected tab. It will be -1 if no tab is selected.
+     * @type {number}
      */
     currentIndex: PropTypes.number,
 
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
+     * @private
      */
     setProps: PropTypes.func
 };
+
+
+/**
+ * @private
+ */
+export default TabPanel;

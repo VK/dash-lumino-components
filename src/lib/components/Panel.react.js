@@ -7,15 +7,20 @@ import {
 } from '@lumino/widgets';
 
 /**
- * A simple and convenient panel widget class.
+ * A simple and convenient panel widget class.  
+ * {@link https://jupyterlab.github.io/lumino/widgets/classes/panel.html}
  * 
- * https://jupyterlab.github.io/lumino/widgets/classes/panel.html
+ * This class is suitable to directly display a collection of dash widgets.
+ * @hideconstructor
  * 
- * This class is suitable as a base class for implementing a variety
- * of convenience panel widgets, but can also be used directly with
- * CSS to arrange a collection of widgets.
+ * @example
+ * import dash_lumino_components as dlc
+ * import dash_html_components as html
+ * 
+ * panelA = dlc.Panel(id="panelA", children=html.Div("Content"), label="Test", icon="fa fa-plus")
+ * panelB = dlc.Panel([html.Div("Content")], id="panelB", label="Test", icon="fa fa-plus")
  */
-export default class Panel extends DashLuminoComponent {
+class Panel extends DashLuminoComponent {
 
     constructor(props) {
         super(props);
@@ -70,30 +75,44 @@ Panel.defaultProps = {
     addToDom: false,
 };
 
+/**
+ * @typedef
+ * @enum {}
+ */
 Panel.propTypes = {
     /**
      * ID of the widget
+     * @type {string}
      */
     id: PropTypes.string.isRequired,
 
     /**
      * The label of the panel
+     * @type {string}
      */
     label: PropTypes.string,
 
 
     /**
      * The icon of the panel (a cass class name)
+     * @type {string}
      */
     icon: PropTypes.string,
 
     /**
      * bool if the object has to be added to the dom directly
+     * @type {boolean}
      */
     addToDom: PropTypes.bool,
 
     /**
      * The widgets
+     * @type {Object | Array<Object>}
      */
     children: PropTypes.node
 };
+
+/**
+ * @private
+ */
+export default Panel;

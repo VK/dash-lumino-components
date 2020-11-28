@@ -2,16 +2,28 @@ import PropTypes from 'prop-types';
 import DashLuminoComponent from '../component.js'
 
 import {
-    DockPanel as l_DockPanel
+    DockPanel as l_DockPanel, Widget
 } from '@lumino/widgets';
 import { components } from '../registry.js';
 
 /**
- * A widget which provides a flexible docking area for widgets. 
+ * A widget which provides a flexible docking area for widgets.  
+ * {@link https://jupyterlab.github.io/lumino/widgets/classes/dockpanel.html}
+ * @hideconstructor
  * 
- * https://jupyterlab.github.io/lumino/widgets/classes/dockpanel.html
+ * @example
+ * import dash_lumino_components as dlc
+ * 
+ * dlc.DockPanel([
+ *   dlc.Widget(
+ *     "Example Content",
+ *     id="initial-widget",
+ *     title="Hallo",
+ *     icon="fa fa-folder-open",
+ *     closable=True)
+ *  ], id="dock-panel")
  */
-export default class DockPanel extends DashLuminoComponent {
+class DockPanel extends DashLuminoComponent {
 
     constructor(props) {
         super(props);
@@ -33,6 +45,7 @@ export default class DockPanel extends DashLuminoComponent {
      * and the lumino component is deleted. In the future we want to clean up
      * the children of the dock also here!
      * @param {*} msg 
+     * @ignore
      */
     handleWidgetEvent(msg) {
         const widgetid = msg.srcElement.id;
@@ -115,35 +128,50 @@ DockPanel.defaultProps = {
     addToDom: false,
 };
 
+/**
+ * @typedef
+ * @enum {}
+ */
 DockPanel.propTypes = {
     /**
      * ID of the widget
+     * @type {string}
      */
     id: PropTypes.string.isRequired,
 
     /**
      * mode for the dock panel: ("single-document" | "multiple-document")
+     * @type {string}
      */
     mode: PropTypes.string,
 
     /**
      * The spacing between the items in the panel.
+     * @type {number}
      */
     spacing: PropTypes.number,
 
     /**
      * bool if the object has to be added to the dom directly
+     * @type {boolean}
      */
     addToDom: PropTypes.bool,
 
     /**
      * The widgets
+     * @type {Widget[]}
      */
     children: PropTypes.node,
 
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
+     * @private
      */
     setProps: PropTypes.func
 };
+
+/**
+ * @private
+ */
+export default DockPanel;

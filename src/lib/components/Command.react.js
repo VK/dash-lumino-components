@@ -4,8 +4,14 @@ import { commands } from '../registry';
 
 /**
  * A widget which displays items as a canonical menu.
+ * @hideconstructor
+ * 
+ * @example
+ * import dash_lumino_components as dlc
+ * 
+ * command_open = dlc.Command(id="com:openwidget", label="Open", icon="fa fa-plus")
  */
-export default class Command extends Component {
+class Command extends Component {
 
     constructor(props) {
         super(props);
@@ -24,7 +30,6 @@ export default class Command extends Component {
 
     }
 
-
     render() {
         return "";
     }
@@ -36,36 +41,53 @@ Command.defaultProps = {
     n_called_timestamp: -1,
 };
 
+
+/**
+ * @typedef
+ * @enum {}
+ */
 Command.propTypes = {
     /**
      * The id of the command
+     * @type {string}
      */
     id: PropTypes.string,
 
     /**
      * The label of the command
+     * @type {string}
      */
     label: PropTypes.string,
 
 
     /**
      * The icon of the command (a cass class name)
+     * @type {string}
      */
     icon: PropTypes.string,
 
     /**
      * Number of times the command was called
+     * @type {number}
      */
+
     n_called: PropTypes.number,
     /**
      * Last time that command was called.
+     * @type {number}
      */
     n_called_timestamp: PropTypes.number,
 
     /**
      * Dash-assigned callback that gets fired when the value changes.
+     * @private 
      */
     setProps: PropTypes.func,
 
 
 };
+
+/**
+ * @private
+ */
+export default Command;

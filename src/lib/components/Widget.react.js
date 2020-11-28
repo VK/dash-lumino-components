@@ -10,6 +10,7 @@ import { components } from '../registry.js';
 
 /**
  * Wrap the default Lumino Widget with an event once the widget is closed
+ * @private
  */
 class LuminoWidget extends l_Widget {
 
@@ -34,15 +35,29 @@ class LuminoWidget extends l_Widget {
 
 
 /**
- * The base class of the lumino widget hierarchy.
- * 
- * https://jupyterlab.github.io/lumino/widgets/classes/widget.html
+ * The base class of the lumino widget hierarchy.  
+ * {@link https://jupyterlab.github.io/lumino/widgets/classes/widget.html}
  * 
  * This class will typically be subclassed in order to create a useful
  * widget. However, it can be used directly to host externally created
  * content.
+ * @hideconstructor
+ * 
+ * @example
+ * import dash_lumino_components as dlc
+ * 
+ * dlc.DockPanel([
+ *     dlc.Widget(
+ *         "Content",
+ *         id="test-widget",
+ *         title="Title",
+ *         icon="fa fa-folder-open",
+ *         closable=True,
+ *         caption="Hover label of the widget"
+ *     )],
+ *     id="dock-panel")
  */
-export default class Widget extends DashLuminoComponent {
+class Widget extends DashLuminoComponent {
 
 
     constructor(props) {
@@ -102,29 +117,38 @@ Widget.defaultProps = {
     deleted: false
 };
 
+/**
+ * @typedef
+ * @enum {}
+ */
 Widget.propTypes = {
     /**
      * ID of the widget
+     * @type {string}
      */
     id: PropTypes.string.isRequired,
 
     /**
      * The children of this component
+     * @type {Object | Object[]}
      */
     children: PropTypes.node,
 
     /**
      * The title of the widget
+     * @type {string}
      */
     title: PropTypes.string.isRequired,
 
     /**
      * Is the widget closable
+     * @type {boolean}
      */
     closable: PropTypes.bool,
 
     /**
      * The long title of the widget
+     * @type {string}
      */
     caption: PropTypes.string,
 
@@ -132,17 +156,26 @@ Widget.propTypes = {
      * Is the widget deleted.
      * Note: In the future this might dissapear and the deleted widgets are
      * automatically removed from the dom.
+     * @type {boolean}
      */
     deleted: PropTypes.bool,
 
     /**
      * The icon of the widget (a cass class name)
+     * @type {string}
      */
     icon: PropTypes.string,
 
     /**
      * Dash-assigned callback that should be called to report property changes
      * to Dash, to make them available for callbacks.
+     * @private
      */
     setProps: PropTypes.func
 };
+
+
+/**
+ * @private
+ */
+export default Widget;

@@ -19,7 +19,8 @@
     "build:py_and_r": "dash-generate-components ./src/lib/components dash_lumino_components -p package-info.json --r-prefix dlc --jl-prefix dlc",
     "build:py_and_r-activated": "(. venv/bin/activate || venv\\scripts\\activate && npm run build:py_and_r)",
     "build": "npm run build:js && npm run build:py_and_r",
-    "build:activated": "npm run build:js && npm run build:py_and_r-activated"
+    "build:activated": "npm run build:js && npm run build:py_and_r-activated",
+    "doc": "./node_modules/.bin/jsdoc -c ./jsdoc.conf.json"
   },
   "author": "Viktor Krückl <viktor@krueckl.de>",
   "license": "MIT",
@@ -46,6 +47,7 @@
     "eslint-plugin-import": "^2.18.0",
     "eslint-plugin-react": "^7.14.2",
     "file-loader": "^6.2.0",
+    "jsdoc": "^3.6.6",
     "npm": "^6.1.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",

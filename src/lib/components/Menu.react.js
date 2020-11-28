@@ -7,11 +7,23 @@ import {
 } from '@lumino/widgets';
 
 /**
- * A widget which displays items as a canonical menu.
+ * A widget which displays items as a canonical menu.  
+ * {@link https://jupyterlab.github.io/lumino/widgets/classes/menu.html}
+ * @hideconstructor
  * 
- * https://jupyterlab.github.io/lumino/widgets/classes/menu.html
+ * @example
+ * import dash_lumino_components as dlc
+ * 
+ * dlc.Menu([
+ *    dlc.Command(id="com:openwidget", label="Open", icon="fa fa-plus"),
+ *    dlc.Separator(),
+ *    dlc.Menu([
+ *       dlc.Command(id="com:closeall", label="Close All", icon="fa fa-minus"),
+ *       dlc.Command(id="com:closeone", label="Close One", icon="fa fa-minus"),
+ *    ], id="extraMenu", title="Extra")
+ * ], id="openMenu", title="Widgets")
  */
-export default class Menu extends DashLuminoComponent {
+class Menu extends DashLuminoComponent {
 
     constructor(props) {
         super(props);
@@ -59,25 +71,38 @@ export default class Menu extends DashLuminoComponent {
 Menu.defaultProps = {
 };
 
+/**
+ * @typedef
+ * @enum {}
+ */
 Menu.propTypes = {
 
     /**
      * The ID used to identify this component in Dash callbacks.
+     * @type {string}
      */
     id: PropTypes.string.isRequired,
 
     /**
      * The title of the menu
+     * @type {string}
      */
     title: PropTypes.string,
 
     /**
      * The icon class of the menu
+     * @type {string}
      */
     iconClass: PropTypes.string,
 
     /**
      * An array of the menu items (dlc.Command | dlc.Menu | dlc.Separator)
+     * @type {Array<Command, Menu, Separator>}
      */
     children: PropTypes.node,
 };
+
+/**
+ * @private
+ */
+export default Menu;

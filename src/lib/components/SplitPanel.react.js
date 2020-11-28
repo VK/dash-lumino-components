@@ -4,15 +4,27 @@ import { components } from '../registry.js';
 
 import {
     SplitPanel as l_SplitPanel,
-    Panel as l_Panel
+    Panel as l_Panel,
+    DockPanel,
+    TabPanel,
+    BoxPanel,
+    Panel
 } from '@lumino/widgets';
 
 /**
- * A panel which arranges its widgets into resizable sections.
+ * A panel which arranges its widgets into resizable sections.   
+ * {@link https://jupyterlab.github.io/lumino/widgets/classes/splitpanel.html}
+ * @hideconstructor
  * 
- * https://jupyterlab.github.io/lumino/widgets/classes/splitpanel.html
+ * @example
+ * import dash_lumino_components as dlc
+ * 
+ * dlc.SplitPanel([
+ *    dlc.TabPanel([], id="tab-panel"),
+ *    dlc.DockPanel([], id="dock-panel")
+ * ], id="split-panel")
  */
-export default class SplitPanel extends DashLuminoComponent {
+class SplitPanel extends DashLuminoComponent {
 
     constructor(props) {
         super(props);
@@ -89,6 +101,7 @@ export default class SplitPanel extends DashLuminoComponent {
      * Redistribute the sizes if the total size chanches. Panel sizes of split panes are
      * taken from the width parameter, if they are not hidden.
      * Panels with undefined width are equally spread.
+     * @private
      */
     updateSizes() {
 
@@ -122,34 +135,50 @@ SplitPanel.defaultProps = {
     addToDom: false,
 };
 
+/**
+ * @typedef
+ * @enum {}
+ */
 SplitPanel.propTypes = {
     /**
      * ID of the widget
+     * @type {string}
      */
     id: PropTypes.string.isRequired,
 
     /**
      * the content alignment of the layout ("start" | "center" | "end" | "justify")
+     * @type {string}
      */
     alignment: PropTypes.string,
 
     /**
       * a type alias for a split layout orientation ("horizontal" | "vertical")
+      * @type {string}
       */
     orientation: PropTypes.string,
 
     /**
      * The spacing between items in the layout
+     * @type {number}
      */
     spacing: PropTypes.number,
 
     /**
      * bool if the object has to be added to the dom directly
+     * @type {boolean}
      */
     addToDom: PropTypes.bool,
 
     /**
      * The widgets
+     * @type {Array<DockPanel, TabPanel, BoxPanel, Panel>}
      */
     children: PropTypes.node
 };
+
+
+/**
+ * @private
+ */
+export default SplitPanel;

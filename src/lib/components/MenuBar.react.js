@@ -8,9 +8,19 @@ import {
 /**
  * A widget which displays menus as a canonical menu bar.
  * 
- * https://jupyterlab.github.io/lumino/widgets/classes/menubar.html
+ * {@link https://jupyterlab.github.io/lumino/widgets/classes/menubar.html}
+ * @hideconstructor
+ * 
+ * @example
+ * import dash_lumino_components as dlc
+ * 
+ * dlc.MenuBar([
+ *   dlc.Menu([
+ *     dlc.Command(id="com:openwidget", label="Open", icon="fa fa-plus"),
+ *   ], id="exampleMenu", title="Example")
+ * ], 'menuBar')
  */
-export default class MenuBar extends DashLuminoComponent {
+class MenuBar extends DashLuminoComponent {
 
     constructor(props) {
         super(props);
@@ -39,14 +49,25 @@ export default class MenuBar extends DashLuminoComponent {
 MenuBar.defaultProps = {
 };
 
+/**
+ * @typedef
+ * @enum {}
+ */
 MenuBar.propTypes = {
     /**
      * ID of the widget
+     * @type {string}
      */
     id: PropTypes.string.isRequired,
 
     /**
      * An array of the menus (dlc.Menu)
+     * @type {Menu[]}
      */
     children: PropTypes.node
 };
+
+/**
+ * @private
+ */
+export default MenuBar;
