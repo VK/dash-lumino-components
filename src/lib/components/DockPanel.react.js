@@ -12,16 +12,18 @@ import { components } from '../registry.js';
  * @hideconstructor
  * 
  * @example
+ * //Python:
+ * import dash
  * import dash_lumino_components as dlc
  * 
- * dlc.DockPanel([
- *   dlc.Widget(
- *     "Example Content",
- *     id="initial-widget",
- *     title="Hallo",
- *     icon="fa fa-folder-open",
- *     closable=True)
- *  ], id="dock-panel")
+ * dock = dlc.DockPanel([
+ *     dlc.Widget(
+ *         "Example Content",
+ *         id="initial-widget",
+ *         title="Hallo",
+ *         icon="fa fa-folder-open",
+ *         closable=True)
+ * ], id="dock-panel")
  */
 class DockPanel extends DashLuminoComponent {
 

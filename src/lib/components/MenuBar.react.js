@@ -11,12 +11,14 @@ import {
  * @hideconstructor
  * 
  * @example
+ * //Python:
+ * import dash
  * import dash_lumino_components as dlc
  * 
- * dlc.MenuBar([
- *   dlc.Menu([
- *     dlc.Command(id="com:openwidget", label="Open", icon="fa fa-plus"),
- *   ], id="exampleMenu", title="Example")
+ * menuBar = dlc.MenuBar([
+ *     dlc.Menu([
+ *         dlc.Command(id="com:openwidget", label="Open", icon="fa fa-plus"),
+ *     ], id="exampleMenu", title="Example")
  * ], 'menuBar')
  */
 class MenuBar extends DashLuminoComponent {

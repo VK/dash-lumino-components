@@ -17,11 +17,13 @@ import {
  * @hideconstructor
  * 
  * @example
+ * //Python:
+ * import dash
  * import dash_lumino_components as dlc
  * 
- * dlc.SplitPanel([
- *    dlc.TabPanel([], id="tab-panel"),
- *    dlc.DockPanel([], id="dock-panel")
+ * splitPanel = dlc.SplitPanel([
+ *     dlc.TabPanel([], id="tab-panel"),
+ *     dlc.DockPanel([], id="dock-panel")
  * ], id="split-panel")
  */
 class SplitPanel extends DashLuminoComponent {
