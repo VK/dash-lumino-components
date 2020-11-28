@@ -85,13 +85,15 @@ import { Component } from 'react';
  * @hideconstructor
  * 
  * @example
+ * //Python:
+ * import dash
  * import dash_lumino_components as dlc
  * 
- * dlc.Menu([
- *    dlc.Command(id="com:openwidget", label="Open", icon="fa fa-plus"),
- *    dlc.Separator(),
- *    dlc.Command(id="com:closeall", label="Close All", icon="fa fa-minus")
- * ], id="openMenu", title="Widgets")
+ * menu = dlc.Menu([
+ *     dlc.Command(id="com:openwidget", label="Open", icon="fa fa-plus"),
+ *     dlc.Separator(),
+ *     dlc.Command(id="com:closeall", label="Close All", icon="fa fa-minus")
+ * ], id="openMenu", title="File")
  */
 class Separator extends Component {
 

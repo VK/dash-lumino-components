@@ -125,24 +125,6 @@ window.lunrData = {
           "proptyp",
           "typedef"
         ],
-        "Panel.html": [
-          "class",
-          "collect",
-          "conveni",
-          "dash",
-          "directli",
-          "display",
-          "https://jupyterlab.github.io/lumino/widgets/classes/panel.html",
-          "panel",
-          "simpl",
-          "suitabl",
-          "widget"
-        ],
-        "Panel.html#.propTypes": [
-          "panel.proptyp",
-          "proptyp",
-          "typedef"
-        ],
         "DockPanel.html": [
           "area",
           "class",
@@ -155,20 +137,6 @@ window.lunrData = {
         ],
         "DockPanel.html#.propTypes": [
           "dockpanel.proptyp",
-          "proptyp",
-          "typedef"
-        ],
-        "Menu.html": [
-          "canon",
-          "class",
-          "display",
-          "https://jupyterlab.github.io/lumino/widgets/classes/menu.html",
-          "item",
-          "menu",
-          "widget"
-        ],
-        "Menu.html#.propTypes": [
-          "menu.proptyp",
           "proptyp",
           "typedef"
         ],
@@ -185,6 +153,38 @@ window.lunrData = {
         "SplitPanel.html#.propTypes": [
           "proptyp",
           "splitpanel.proptyp",
+          "typedef"
+        ],
+        "Menu.html": [
+          "canon",
+          "class",
+          "display",
+          "https://jupyterlab.github.io/lumino/widgets/classes/menu.html",
+          "item",
+          "menu",
+          "widget"
+        ],
+        "Menu.html#.propTypes": [
+          "menu.proptyp",
+          "proptyp",
+          "typedef"
+        ],
+        "Panel.html": [
+          "class",
+          "collect",
+          "conveni",
+          "dash",
+          "directli",
+          "display",
+          "https://jupyterlab.github.io/lumino/widgets/classes/panel.html",
+          "panel",
+          "simpl",
+          "suitabl",
+          "widget"
+        ],
+        "Panel.html#.propTypes": [
+          "panel.proptyp",
+          "proptyp",
           "typedef"
         ],
         "TabPanel.html": [
@@ -645,21 +645,21 @@ window.lunrData = {
                       "ref": "MenuBar.html",
                       "tf": 110
                     },
-                    "Panel.html": {
-                      "ref": "Panel.html",
-                      "tf": 117.6923076923077
-                    },
                     "DockPanel.html": {
                       "ref": "DockPanel.html",
+                      "tf": 110
+                    },
+                    "SplitPanel.html": {
+                      "ref": "SplitPanel.html",
                       "tf": 110
                     },
                     "Menu.html": {
                       "ref": "Menu.html",
                       "tf": 110
                     },
-                    "SplitPanel.html": {
-                      "ref": "SplitPanel.html",
-                      "tf": 110
+                    "Panel.html": {
+                      "ref": "Panel.html",
+                      "tf": 117.6923076923077
                     },
                     "TabPanel.html": {
                       "ref": "TabPanel.html",
@@ -859,13 +859,13 @@ window.lunrData = {
                           "ref": "MenuBar.html",
                           "tf": 7.142857142857142
                         },
-                        "Panel.html": {
-                          "ref": "Panel.html",
-                          "tf": 3.8461538461538463
-                        },
                         "Menu.html": {
                           "ref": "Menu.html",
                           "tf": 8.333333333333332
+                        },
+                        "Panel.html": {
+                          "ref": "Panel.html",
+                          "tf": 3.8461538461538463
                         }
                       }
                     }
@@ -1143,20 +1143,20 @@ window.lunrData = {
                           "ref": "MenuBar.html#.propTypes",
                           "tf": 750
                         },
-                        "Panel.html#.propTypes": {
-                          "ref": "Panel.html#.propTypes",
-                          "tf": 750
-                        },
                         "DockPanel.html#.propTypes": {
                           "ref": "DockPanel.html#.propTypes",
+                          "tf": 750
+                        },
+                        "SplitPanel.html#.propTypes": {
+                          "ref": "SplitPanel.html#.propTypes",
                           "tf": 750
                         },
                         "Menu.html#.propTypes": {
                           "ref": "Menu.html#.propTypes",
                           "tf": 750
                         },
-                        "SplitPanel.html#.propTypes": {
-                          "ref": "SplitPanel.html#.propTypes",
+                        "Panel.html#.propTypes": {
+                          "ref": "Panel.html#.propTypes",
                           "tf": 750
                         },
                         "TabPanel.html#.propTypes": {
@@ -1204,13 +1204,13 @@ window.lunrData = {
                       "ref": "BoxPanel.html",
                       "tf": 7.142857142857142
                     },
-                    "Panel.html": {
-                      "ref": "Panel.html",
-                      "tf": 1903.8461538461538
-                    },
                     "SplitPanel.html": {
                       "ref": "SplitPanel.html",
                       "tf": 8.333333333333332
+                    },
+                    "Panel.html": {
+                      "ref": "Panel.html",
+                      "tf": 1903.8461538461538
                     },
                     "TabPanel.html": {
                       "ref": "TabPanel.html",
@@ -1356,21 +1356,21 @@ window.lunrData = {
                         "ref": "MenuBar.html",
                         "tf": 7.142857142857142
                       },
-                      "Panel.html": {
-                        "ref": "Panel.html",
-                        "tf": 7.6923076923076925
-                      },
                       "DockPanel.html": {
                         "ref": "DockPanel.html",
                         "tf": 14.285714285714285
+                      },
+                      "SplitPanel.html": {
+                        "ref": "SplitPanel.html",
+                        "tf": 8.333333333333332
                       },
                       "Menu.html": {
                         "ref": "Menu.html",
                         "tf": 8.333333333333332
                       },
-                      "SplitPanel.html": {
-                        "ref": "SplitPanel.html",
-                        "tf": 8.333333333333332
+                      "Panel.html": {
+                        "ref": "Panel.html",
+                        "tf": 7.6923076923076925
                       },
                       "TabPanel.html": {
                         "ref": "TabPanel.html",
@@ -1584,20 +1584,20 @@ window.lunrData = {
                           "ref": "MenuBar.html#.propTypes",
                           "tf": 110
                         },
-                        "Panel.html#.propTypes": {
-                          "ref": "Panel.html#.propTypes",
-                          "tf": 110
-                        },
                         "DockPanel.html#.propTypes": {
                           "ref": "DockPanel.html#.propTypes",
+                          "tf": 110
+                        },
+                        "SplitPanel.html#.propTypes": {
+                          "ref": "SplitPanel.html#.propTypes",
                           "tf": 110
                         },
                         "Menu.html#.propTypes": {
                           "ref": "Menu.html#.propTypes",
                           "tf": 110
                         },
-                        "SplitPanel.html#.propTypes": {
-                          "ref": "SplitPanel.html#.propTypes",
+                        "Panel.html#.propTypes": {
+                          "ref": "Panel.html#.propTypes",
                           "tf": 110
                         },
                         "TabPanel.html#.propTypes": {
@@ -1844,52 +1844,6 @@ window.lunrData = {
               }
             }
           },
-          "u": {
-            "docs": {},
-            "i": {
-              "docs": {},
-              "t": {
-                "docs": {},
-                "a": {
-                  "docs": {},
-                  "b": {
-                    "docs": {},
-                    "l": {
-                      "docs": {
-                        "Panel.html": {
-                          "ref": "Panel.html",
-                          "tf": 3.8461538461538463
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "b": {
-              "docs": {},
-              "c": {
-                "docs": {},
-                "l": {
-                  "docs": {},
-                  "a": {
-                    "docs": {},
-                    "s": {
-                      "docs": {},
-                      "s": {
-                        "docs": {
-                          "Widget.html": {
-                            "ref": "Widget.html",
-                            "tf": 2.631578947368421
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
           "p": {
             "docs": {},
             "l": {
@@ -1942,6 +1896,52 @@ window.lunrData = {
                                 }
                               }
                             }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "u": {
+            "docs": {},
+            "i": {
+              "docs": {},
+              "t": {
+                "docs": {},
+                "a": {
+                  "docs": {},
+                  "b": {
+                    "docs": {},
+                    "l": {
+                      "docs": {
+                        "Panel.html": {
+                          "ref": "Panel.html",
+                          "tf": 3.8461538461538463
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "b": {
+              "docs": {},
+              "c": {
+                "docs": {},
+                "l": {
+                  "docs": {},
+                  "a": {
+                    "docs": {},
+                    "s": {
+                      "docs": {},
+                      "s": {
+                        "docs": {
+                          "Widget.html": {
+                            "ref": "Widget.html",
+                            "tf": 2.631578947368421
                           }
                         }
                       }
@@ -2216,41 +2216,6 @@ window.lunrData = {
                                                                                                                     }
                                                                                                                   }
                                                                                                                 },
-                                                                                                                "p": {
-                                                                                                                  "docs": {},
-                                                                                                                  "a": {
-                                                                                                                    "docs": {},
-                                                                                                                    "n": {
-                                                                                                                      "docs": {},
-                                                                                                                      "e": {
-                                                                                                                        "docs": {},
-                                                                                                                        "l": {
-                                                                                                                          "docs": {},
-                                                                                                                          ".": {
-                                                                                                                            "docs": {},
-                                                                                                                            "h": {
-                                                                                                                              "docs": {},
-                                                                                                                              "t": {
-                                                                                                                                "docs": {},
-                                                                                                                                "m": {
-                                                                                                                                  "docs": {},
-                                                                                                                                  "l": {
-                                                                                                                                    "docs": {
-                                                                                                                                      "Panel.html": {
-                                                                                                                                        "ref": "Panel.html",
-                                                                                                                                        "tf": 3.8461538461538463
-                                                                                                                                      }
-                                                                                                                                    }
-                                                                                                                                  }
-                                                                                                                                }
-                                                                                                                              }
-                                                                                                                            }
-                                                                                                                          }
-                                                                                                                        }
-                                                                                                                      }
-                                                                                                                    }
-                                                                                                                  }
-                                                                                                                },
                                                                                                                 "d": {
                                                                                                                   "docs": {},
                                                                                                                   "o": {
@@ -2336,6 +2301,41 @@ window.lunrData = {
                                                                                                                                             }
                                                                                                                                           }
                                                                                                                                         }
+                                                                                                                                      }
+                                                                                                                                    }
+                                                                                                                                  }
+                                                                                                                                }
+                                                                                                                              }
+                                                                                                                            }
+                                                                                                                          }
+                                                                                                                        }
+                                                                                                                      }
+                                                                                                                    }
+                                                                                                                  }
+                                                                                                                },
+                                                                                                                "p": {
+                                                                                                                  "docs": {},
+                                                                                                                  "a": {
+                                                                                                                    "docs": {},
+                                                                                                                    "n": {
+                                                                                                                      "docs": {},
+                                                                                                                      "e": {
+                                                                                                                        "docs": {},
+                                                                                                                        "l": {
+                                                                                                                          "docs": {},
+                                                                                                                          ".": {
+                                                                                                                            "docs": {},
+                                                                                                                            "h": {
+                                                                                                                              "docs": {},
+                                                                                                                              "t": {
+                                                                                                                                "docs": {},
+                                                                                                                                "m": {
+                                                                                                                                  "docs": {},
+                                                                                                                                  "l": {
+                                                                                                                                    "docs": {
+                                                                                                                                      "Panel.html": {
+                                                                                                                                        "ref": "Panel.html",
+                                                                                                                                        "tf": 3.8461538461538463
                                                                                                                                       }
                                                                                                                                     }
                                                                                                                                   }
@@ -2865,27 +2865,6 @@ window.lunrData = {
       "summary": "",
       "description": ""
     },
-    "Panel.html": {
-      "id": "Panel.html",
-      "kind": "class",
-      "title": "Panel",
-      "longname": "Panel",
-      "name": "Panel",
-      "tags": "Panel",
-      "summary": "",
-      "description": "A simple and convenient panel widget class. https://jupyterlab.github.io/lumino/widgets/classes/panel.html This class is suitable to directly display a collection of dash widgets.",
-      "body": ""
-    },
-    "Panel.html#.propTypes": {
-      "id": "Panel.html#.propTypes",
-      "kind": "typedef",
-      "title": "propTypes",
-      "longname": "Panel.propTypes",
-      "name": "propTypes",
-      "tags": "Panel.propTypes propTypes",
-      "summary": "",
-      "description": ""
-    },
     "DockPanel.html": {
       "id": "DockPanel.html",
       "kind": "class",
@@ -2904,6 +2883,27 @@ window.lunrData = {
       "longname": "DockPanel.propTypes",
       "name": "propTypes",
       "tags": "DockPanel.propTypes propTypes",
+      "summary": "",
+      "description": ""
+    },
+    "SplitPanel.html": {
+      "id": "SplitPanel.html",
+      "kind": "class",
+      "title": "SplitPanel",
+      "longname": "SplitPanel",
+      "name": "SplitPanel",
+      "tags": "SplitPanel",
+      "summary": "",
+      "description": "A panel which arranges its widgets into resizable sections. https://jupyterlab.github.io/lumino/widgets/classes/splitpanel.html",
+      "body": ""
+    },
+    "SplitPanel.html#.propTypes": {
+      "id": "SplitPanel.html#.propTypes",
+      "kind": "typedef",
+      "title": "propTypes",
+      "longname": "SplitPanel.propTypes",
+      "name": "propTypes",
+      "tags": "SplitPanel.propTypes propTypes",
       "summary": "",
       "description": ""
     },
@@ -2928,24 +2928,24 @@ window.lunrData = {
       "summary": "",
       "description": ""
     },
-    "SplitPanel.html": {
-      "id": "SplitPanel.html",
+    "Panel.html": {
+      "id": "Panel.html",
       "kind": "class",
-      "title": "SplitPanel",
-      "longname": "SplitPanel",
-      "name": "SplitPanel",
-      "tags": "SplitPanel",
+      "title": "Panel",
+      "longname": "Panel",
+      "name": "Panel",
+      "tags": "Panel",
       "summary": "",
-      "description": "A panel which arranges its widgets into resizable sections. https://jupyterlab.github.io/lumino/widgets/classes/splitpanel.html",
+      "description": "A simple and convenient panel widget class. https://jupyterlab.github.io/lumino/widgets/classes/panel.html This class is suitable to directly display a collection of dash widgets.",
       "body": ""
     },
-    "SplitPanel.html#.propTypes": {
-      "id": "SplitPanel.html#.propTypes",
+    "Panel.html#.propTypes": {
+      "id": "Panel.html#.propTypes",
       "kind": "typedef",
       "title": "propTypes",
-      "longname": "SplitPanel.propTypes",
+      "longname": "Panel.propTypes",
       "name": "propTypes",
-      "tags": "SplitPanel.propTypes propTypes",
+      "tags": "Panel.propTypes propTypes",
       "summary": "",
       "description": ""
     },

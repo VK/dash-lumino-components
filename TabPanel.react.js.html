@@ -96,22 +96,25 @@ import {
  * @hideconstructor
  * 
  * @example
+ * //Python:
+ * import dash
  * import dash_lumino_components as dlc
  * import dash_html_components as html
  * import dash_bootstrap_components as dbc
  * 
- * dlc.TabPanel([
- *     dlc.Panel(
- *         html.Div([
- *             dbc.Button("Open Plot", id="button2", style={"width": "100%"})
- *         ]),
- *         id="tab-panel-A"
- *         label="Plots",
- *         icon="fa fa-bar-chart")
+ * tabPanel = dlc.TabPanel(
+ *     [
+ *         dlc.Panel(
+ *             html.Div([
+ *                 dbc.Button("Open Plot",
+ *                            id="button2",
+ *                            style={"width": "100%"})
+ *             ]),
+ *             id="tab-panel-A"
+ *             label="Plots",
+ *             icon="fa fa-bar-chart")
  *     ],
- *     id='tab-panel-left',
- *     tabPlacement="left",
- *     allowDeselect=True)
+ *     id='tab-panel-left')
  */
 class TabPanel extends DashLuminoComponent {
 

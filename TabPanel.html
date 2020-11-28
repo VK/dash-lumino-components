@@ -93,22 +93,25 @@
 			For use cases which require more control than is provided by this panel,
 			the TabBar widget may be used independently.</p></div>
 			</div>			<div class="callout callout-example"><h5>Examples</h5>		<div class="example-code">
-						<pre class="prettyprint source language-javascript"><code class="language-javascript">import dash_lumino_components as dlc
+						<pre class="prettyprint source language-javascript"><code class="language-javascript">//Python:
+			import dash
+			import dash_lumino_components as dlc
 			import dash_html_components as html
 			import dash_bootstrap_components as dbc
 			
-			dlc.TabPanel([
-			    dlc.Panel(
-			        html.Div([
-			            dbc.Button(&quot;Open Plot&quot;, id&#x3D;&quot;button2&quot;, style&#x3D;{&quot;width&quot;: &quot;100%&quot;})
-			        ]),
-			        id&#x3D;&quot;tab-panel-A&quot;
-			        label&#x3D;&quot;Plots&quot;,
-			        icon&#x3D;&quot;fa fa-bar-chart&quot;)
+			tabPanel &#x3D; dlc.TabPanel(
+			    [
+			        dlc.Panel(
+			            html.Div([
+			                dbc.Button(&quot;Open Plot&quot;,
+			                           id&#x3D;&quot;button2&quot;,
+			                           style&#x3D;{&quot;width&quot;: &quot;100%&quot;})
+			            ]),
+			            id&#x3D;&quot;tab-panel-A&quot;
+			            label&#x3D;&quot;Plots&quot;,
+			            icon&#x3D;&quot;fa fa-bar-chart&quot;)
 			    ],
-			    id&#x3D;&#x27;tab-panel-left&#x27;,
-			    tabPlacement&#x3D;&quot;left&quot;,
-			    allowDeselect&#x3D;True)</code></pre>
+			    id&#x3D;&#x27;tab-panel-left&#x27;)</code></pre>
 					</div>
 			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
 			
@@ -130,7 +133,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="TabPanel.react.js.html">TabPanel.react.js</a>, <a href="TabPanel.react.js.html#line-38">line 38</a></p>
+									<p class="form-control-static"><a href="TabPanel.react.js.html">TabPanel.react.js</a>, <a href="TabPanel.react.js.html#line-41">line 41</a></p>
 								</div>
 							</div>
 			
@@ -258,7 +261,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="TabPanel.react.js.html">TabPanel.react.js</a>, <a href="TabPanel.react.js.html#line-151">line 151</a></p>
+									<p class="form-control-static"><a href="TabPanel.react.js.html">TabPanel.react.js</a>, <a href="TabPanel.react.js.html#line-154">line 154</a></p>
 								</div>
 							</div>
 			

@@ -90,15 +90,19 @@ import {
  * @hideconstructor
  * 
  * @example
+ * //Python:
+ * import dash
  * import dash_lumino_components as dlc
  * 
- * dlc.Menu([
- *    dlc.Command(id="com:openwidget", label="Open", icon="fa fa-plus"),
- *    dlc.Separator(),
- *    dlc.Menu([
- *       dlc.Command(id="com:closeall", label="Close All", icon="fa fa-minus"),
- *       dlc.Command(id="com:closeone", label="Close One", icon="fa fa-minus"),
- *    ], id="extraMenu", title="Extra")
+
+ * menu = dlc.Menu([
+ *     dlc.Command(id="com:openwidget", label="Open", icon="fa fa-plus"),
+ *     dlc.Separator(),
+ *     dlc.Menu([
+ *         dlc.Command(id="com:closeall", label="Close All", icon="fa fa-minus"),
+ *         dlc.Command(id="com:closeone",
+ *                     label="Close One", icon="fa fa-minus"),
+ *     ], id="extraMenu", title="Extra")
  * ], id="openMenu", title="Widgets")
  */
 class Menu extends DashLuminoComponent {

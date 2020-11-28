@@ -92,11 +92,23 @@ import {
  * @hideconstructor
  * 
  * @example
+ * //Python:
  * import dash_lumino_components as dlc
  * import dash_html_components as html
  * 
- * panelA = dlc.Panel(id="panelA", children=html.Div("Content"), label="Test", icon="fa fa-plus")
- * panelB = dlc.Panel([html.Div("Content")], id="panelB", label="Test", icon="fa fa-plus")
+ * panelA = dlc.Panel(
+ *     id="panelA",
+ *     children=html.Div("Content"),
+ *     label="Test",
+ *     icon="fa fa-plus")
+ * 
+ * panelB = dlc.Panel(
+ *     [
+ *         html.Div("Content")
+ *     ],
+ *     id="panelB",
+ *     label="Test",
+ *     icon="fa fa-plus")
  */
 class Panel extends DashLuminoComponent {
 

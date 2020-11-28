@@ -88,15 +88,18 @@
 			<div class="callout callout-primary"><h5>Description</h5>		<div class="description classdesc"><p>A widget which displays items as a canonical menu.<br>
 			<a href="https://jupyterlab.github.io/lumino/widgets/classes/menu.html">https://jupyterlab.github.io/lumino/widgets/classes/menu.html</a></p></div>
 			</div>			<div class="callout callout-example"><h5>Examples</h5>		<div class="example-code">
-						<pre class="prettyprint source language-javascript"><code class="language-javascript">import dash_lumino_components as dlc
+						<pre class="prettyprint source language-javascript"><code class="language-javascript">//Python:
+			import dash
+			import dash_lumino_components as dlc
 			
-			dlc.Menu([
-			   dlc.Command(id&#x3D;&quot;com:openwidget&quot;, label&#x3D;&quot;Open&quot;, icon&#x3D;&quot;fa fa-plus&quot;),
-			   dlc.Separator(),
-			   dlc.Menu([
-			      dlc.Command(id&#x3D;&quot;com:closeall&quot;, label&#x3D;&quot;Close All&quot;, icon&#x3D;&quot;fa fa-minus&quot;),
-			      dlc.Command(id&#x3D;&quot;com:closeone&quot;, label&#x3D;&quot;Close One&quot;, icon&#x3D;&quot;fa fa-minus&quot;),
-			   ], id&#x3D;&quot;extraMenu&quot;, title&#x3D;&quot;Extra&quot;)
+			menu &#x3D; dlc.Menu([
+			    dlc.Command(id&#x3D;&quot;com:openwidget&quot;, label&#x3D;&quot;Open&quot;, icon&#x3D;&quot;fa fa-plus&quot;),
+			    dlc.Separator(),
+			    dlc.Menu([
+			        dlc.Command(id&#x3D;&quot;com:closeall&quot;, label&#x3D;&quot;Close All&quot;, icon&#x3D;&quot;fa fa-minus&quot;),
+			        dlc.Command(id&#x3D;&quot;com:closeone&quot;,
+			                    label&#x3D;&quot;Close One&quot;, icon&#x3D;&quot;fa fa-minus&quot;),
+			    ], id&#x3D;&quot;extraMenu&quot;, title&#x3D;&quot;Extra&quot;)
 			], id&#x3D;&quot;openMenu&quot;, title&#x3D;&quot;Widgets&quot;)</code></pre>
 					</div>
 			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
@@ -119,7 +122,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Menu.react.js.html">Menu.react.js</a>, <a href="Menu.react.js.html#line-26">line 26</a></p>
+									<p class="form-control-static"><a href="Menu.react.js.html">Menu.react.js</a>, <a href="Menu.react.js.html#line-30">line 30</a></p>
 								</div>
 							</div>
 			
@@ -206,7 +209,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="Menu.react.js.html">Menu.react.js</a>, <a href="Menu.react.js.html#line-78">line 78</a></p>
+									<p class="form-control-static"><a href="Menu.react.js.html">Menu.react.js</a>, <a href="Menu.react.js.html#line-82">line 82</a></p>
 								</div>
 							</div>
 			
