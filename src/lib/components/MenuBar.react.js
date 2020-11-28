@@ -21,7 +21,7 @@ export default class MenuBar extends DashLuminoComponent {
         // add the children of the component to the menus of the MenuBar
         if (this.props.children) {
             super.parseChildrenToArray().forEach(el => {
-                super.applyAfterCreation(el, (target, child) => {
+                super.applyAfterLuminoChildCreation(el, (target, child) => {
                     target.lumino.addMenu(child.lumino);
                 });
             })

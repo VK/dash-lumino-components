@@ -14,7 +14,15 @@ export default class DashLuminoComponent extends Component {
 
     constructor(props) {
         super(props);
+    }
 
+
+    move2Dash(comp) {
+        comp.div.appendChild(comp.lumino.node)
+    }
+
+    move2Lumino(comp) {
+        comp.lumino.node.appendChild(comp.div.children[0])
     }
 
     /**
@@ -22,20 +30,31 @@ export default class DashLuminoComponent extends Component {
      * @param {*} luminoComponent 
      * @param {*} attachToDom
      */
-    register(luminoComponent, attachToDom = false) {
+    register(luminoComponent, attachToDom = false, resize = true) {
         this.luminoComponent = luminoComponent;
 
         // create an unique id if not available
         this.id = (this.props.id || this.props.id != undefined) ? this.props.id : get_uuid();
 
+        // set the same id to the lumino component
         luminoComponent.id = this.id;
 
+        // call the update if the window resizes
+        if (resize) {
+            window.addEventListener("resize", function () {
+                luminoComponent.update();
+            });
+        }
+
+        //create an entry in the registry
         components[this.id] = {
             "dash": this,
             "lumino": luminoComponent,
             "div": undefined
         }
 
+        // add the component to the dom is usually needed for the
+        // first DashLuminoComponent
         if (attachToDom) {
             this.attachToDom();
         }
@@ -49,7 +68,6 @@ export default class DashLuminoComponent extends Component {
      */
     attachToDom() {
         l_Widget.attach(this.luminoComponent, document.body);
-        components[this.id]["div"] = this.luminoComponent.node;
     }
 
     /**
@@ -59,12 +77,10 @@ export default class DashLuminoComponent extends Component {
      * @param {*} reactComponent 
      * @param {*} func(target_component, child_component)
      */
-    applyAfterCreation(reactComponent, func) {
+    applyAfterLuminoChildCreation(reactComponent, func) {
         var i = 0;
 
         let target_component = components[this.id];
-
-
 
         function updateLoop() {
             setTimeout(function () {
@@ -82,6 +98,47 @@ export default class DashLuminoComponent extends Component {
 
         updateLoop();
     }
+
+
+
+    /**
+     * Wait untiul the dash html dom element is created and then apply the custom function
+     * This is usually used to create the dash component and then move it into a lumino compoent
+     * 
+     * @param {*} reactComponent 
+     * @param {*} containerName
+     * @param {*} func(target_component, child_component)
+     */
+    applyAfterDomCreation(reactComponent, containerName, func) {
+        var i = 0;
+
+        let target_component = components[this.id];
+
+
+        function updateLoop() {
+            setTimeout(function () {
+                i++;
+
+                var dash_object = document.getElementById(containerName);
+
+                if (dash_object && target_component) {
+                    func(target_component, dash_object);
+                    //components[this.props.id].div = dash_object.parentElement;
+                    //lumino_object.appendChild(dash_object);
+                    //dash_object.style = "";
+                    //console.log("Info: created Panel " + props.id + " after " + (i * 10) + "ms");
+                } else if (i < 50) {
+                    updateLoop();
+                } else {
+                    console.log("Warning: applyAfterCreation timed out!");
+                }
+            }, 10)
+        }
+
+        updateLoop();
+    }
+
+
 
 
     parseChildrenToArray() {

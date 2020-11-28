@@ -37,7 +37,7 @@ export default class Menu extends DashLuminoComponent {
                         menu.addItem({ type: 'separator' });
                     }
                     if (el.type === "Menu") {
-                        super.applyAfterCreation(reactElement, (target, child) => {
+                        super.applyAfterLuminoChildCreation(reactElement, (target, child) => {
                             target.lumino.addItem({ type: 'submenu', submenu: child.lumino });
                         });
                     }

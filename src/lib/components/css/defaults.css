@@ -512,7 +512,10 @@
 }
 
 .lm-DockPanel-widget {
-    box-shadow: 0 1px 4px 0 rgba(0,0,0,.3)
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,.3);
+    border-bottom: 1px solid silver;
+    border-left: 1px solid silver;
+    border-right: 1px solid silver;
 }
 
 .lm-Widget {
