@@ -1,0 +1,324 @@
+<!-- start:source.tmpl.hbs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+		<title>TabPanel.react.js</title>
+		<!--[if lt IE 9]>
+		<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<link href="https://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet">
+		<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
+		<link type="text/css" rel="stylesheet" href="css/prism.min.css">
+		<link type="text/css" rel="stylesheet" href="css/template.min.css">
+		<script type="text/javascript">
+			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"Do MMM YYYY","systemName":"Dash Lumino Components","systemSummary":"Integrate Lumino Widgets into Plotly's Dash to build interactive web applications","systemLogo":"","systemColor":"","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"global","title":"Globals","summary":"All documented globals."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"FooDoc Copyright © 2016 The contributors to the JSDoc3 and FooDoc projects.","linenums":true,"collapseSymbols":false,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":false,"showAccessFilter":true,"analytics":null,"methodHeadingReturns":true,"sort":"linenum, longname, version, since","search":true,"favicon":null,"stylesheets":[],"scripts":[],"monospaceLinks":true,"cleverLinks":true};
+			window.DOCLET_TOC_ENABLED = false;
+			window.DOCLET_AFILTER_ENABLED = false;
+		</script>
+</head>
+<body>
+	<!-- start:navbar.hbs -->
+	<header class="navbar navbar-default navbar-fixed-top navbar-inverse">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="index.html">
+					Dash Lumino Components
+				</a>
+				<!-- displayed on small devices -->
+				<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+			<div class="navbar-collapse collapse" id="topNavigation">
+				<ul class="nav navbar-nav">
+								<li class="dropdown">
+									<a href="list_class.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+									<ul class="dropdown-menu">
+											<li><a href="BoxPanel.html">BoxPanel</a></li>
+											<li><a href="Command.html">Command</a></li>
+											<li><a href="DockPanel.html">DockPanel</a></li>
+											<li><a href="Menu.html">Menu</a></li>
+											<li><a href="MenuBar.html">MenuBar</a></li>
+											<li><a href="Panel.html">Panel</a></li>
+											<li><a href="Separator.html">Separator</a></li>
+											<li><a href="SplitPanel.html">SplitPanel</a></li>
+											<li><a href="TabPanel.html">TabPanel</a></li>
+											<li><a href="Widget.html">Widget</a></li>
+									</ul>
+								</li>
+				</ul>
+					<!-- start:lunr-search-navbar.hbs -->
+					<form class="navbar-form navbar-right" role="search">
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="Search" id="lunr-search-input">
+							<div class="input-group-btn">
+								<button class="btn btn-default" id="lunr-search-submit">
+									<i class="glyphicon glyphicon-search"></i>
+								</button>
+							</div>
+						</div>
+					</form>
+					<!-- start:lunr-search-navbar.hbs -->		</div>
+		</div>
+	</header>
+	<!-- end:navbar.hbs -->		<div class="page-header">
+			<div class="container">
+				<span class="kind">source</span>
+				<h1><span class="name">TabPanel.react.js</span></h1>
+			</div>
+		</div>
+	<div class="container content">
+		<div class="row">
+			<div class="col-md-12 main-content">
+		<section class="source-section">
+			<article></article>
+			<pre class="prettyprint source language-javascript line-numbers"><code class="language-javascript">import PropTypes from 'prop-types';
+import DashLuminoComponent from '../component.js'
+import { components } from '../registry.js';
+
+import {
+    TabPanel as l_TabPanel
+} from '@lumino/widgets';
+
+/**
+ * A widget which combines a TabBar and a StackedPanel.  
+ * {@link https://jupyterlab.github.io/lumino/widgets/classes/tabpanel.html}
+ * 
+ * This is a simple panel which handles the common case of a tab bar placed
+ * next to a content area. The selected tab controls the widget which is
+ * shown in the content area.
+ * For use cases which require more control than is provided by this panel,
+ * the TabBar widget may be used independently.
+ * @hideconstructor
+ * 
+ * @example
+ * import dash_lumino_components as dlc
+ * import dash_html_components as html
+ * import dash_bootstrap_components as dbc
+ * 
+ * dlc.TabPanel([
+ *     dlc.Panel(
+ *         html.Div([
+ *             dbc.Button("Open Plot", id="button2", style={"width": "100%"})
+ *         ]),
+ *         id="tab-panel-A"
+ *         label="Plots",
+ *         icon="fa fa-bar-chart")
+ *     ],
+ *     id='tab-panel-left',
+ *     tabPlacement="left",
+ *     allowDeselect=True)
+ */
+class TabPanel extends DashLuminoComponent {
+
+    constructor(props) {
+        super(props);
+
+        // register a new TabPanel
+        let luminoComponent = super.register(new l_TabPanel({
+            tabPlacement: props.tabPlacement,
+            tabsMovable: props.tabsMovable,
+        }), props.addToDom);
+
+        // set additional properties
+        luminoComponent.tabBar.allowDeselect = props.allowDeselect;
+        if (props.allowDeselect) {
+            // if the user is allow to deselect items, panel should hide if nothing is selected
+            // this is handeled by the _onTabIndexChanged callback
+            luminoComponent.currentChanged.connect(
+                this._onTabIndexChanged,
+                this
+            );
+        }
+
+
+        /*
+                console.log(components[this.props.id]);
+                let tabBar = components[this.props.id].lumino.tabBar;
+                let stackedPanel = components[this.props.id].lumino.stackedPanel;
+        
+                console.log(tabBar);
+                console.log(stackedPanel);
+        */
+
+
+        // we need to update the tabpanel width once the user resizes the window
+        let that = this;
+        let st_panel = luminoComponent.stackedPanel;
+        luminoComponent.stackedPanel.onResize = (msg) => {
+
+            const { setProps } = that.props;
+            let rel_sizes = st_panel.parent.relativeSizes();
+            let idx = st_panel.parent.widgets.indexOf(st_panel);
+
+            if (idx != -1) {
+                setProps({ width: rel_sizes[idx] * window.innerWidth });
+            }
+        };
+
+
+
+        //add the children of the component to the widgets of the panel
+        if (this.props.children) {
+            super.parseChildrenToArray().forEach(el => {
+                super.applyAfterLuminoChildCreation(el, (target, child) => {
+                    target.lumino.addWidget(child.lumino);
+                    target.lumino.currentIndex = target.dash.props.currentIndex;
+                });
+            })
+        }
+
+    }
+
+    /**
+     * this callback hids the stackedpanel if no tab is selected
+     * to make everything seamless, the resizing is handeled here
+     * @private
+     */
+    _onTabIndexChanged() {
+        if (components[this.id] == null)
+            return;
+
+        let tabBar = components[this.id].lumino.tabBar;
+        let stackedPanel = components[this.id].lumino.stackedPanel;
+
+        if (tabBar != null &amp;&amp; stackedPanel != null) {
+
+            let { setProps } = components[this.id].dash.props;
+            setProps({ currentIndex: tabBar.currentIndex });
+
+            if (tabBar.currentIndex == -1) {
+                let sizes = stackedPanel.parent.relativeSizes();
+                stackedPanel.hide();
+            } else {
+                stackedPanel.show();
+            }
+            components[stackedPanel.parent.id].dash.updateSizes();
+        } else {
+            return;
+        }
+    }
+
+
+    render() {
+        if (components[this.id]) {
+            components[this.id].lumino.currentIndex = this.props.currentIndex;
+        }
+        return super.render();
+    }
+
+}
+
+TabPanel.defaultProps = {
+    tabPlacement: 'top',
+    tabsMovable: false,
+    allowDeselect: false,
+    addToDom: false,
+    width: 250,
+    currentIndex: -1
+};
+
+/**
+ * @typedef
+ * @enum {}
+ */
+TabPanel.propTypes = {
+    /**
+     * ID of the widget
+     * @type {string}
+     */
+    id: PropTypes.string.isRequired,
+
+    /**
+     * the placement of the tab bar relative to the content. ("left" | "right" | "top" | "bottom")
+     * @type {string}
+     */
+    tabPlacement: PropTypes.string,
+
+    /**
+     * whether the tabs are movable by the user
+     * @type {boolean}
+     */
+    tabsMovable: PropTypes.bool,
+
+    /**
+     * bool if all tabs can be deselected
+     * @type {boolean}
+     */
+    allowDeselect: PropTypes.bool,
+
+    /**
+     * the default width or height of the tab panel content
+     * @type {number}
+     */
+    width: PropTypes.number,
+
+    /**
+     * bool if the object has to be added to the dom directly
+     * @type {boolean}
+     */
+    addToDom: PropTypes.bool,
+
+    /**
+     * The widgets
+     * @type {Panel[]}
+     */
+    children: PropTypes.node,
+
+    /**
+     * Get the index of the currently selected tab. It will be -1 if no tab is selected.
+     * @type {number}
+     */
+    currentIndex: PropTypes.number,
+
+    /**
+     * Dash-assigned callback that should be called to report property changes
+     * to Dash, to make them available for callbacks.
+     * @private
+     */
+    setProps: PropTypes.func
+};
+
+
+/**
+ * @private
+ */
+export default TabPanel;</code></pre>
+		</section>
+			</div>
+		</div>
+	</div>
+	<footer>
+				<div class="copyright">FooDoc Copyright © 2016 The contributors to the JSDoc3 and FooDoc projects.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a> on 28th Nov 2020 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+	</footer>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/clipboard.min.js"></script>
+	<script src="js/prism.min.js"></script>
+	<script src="js/template.min.js"></script>
+		<!-- start:lunr-search-modal.hbs -->
+		<div class="modal fade" id="lunr-search-modal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title">Search results</h4>
+					</div>
+					<div class="modal-body" id="lunr-search-body">
+					</div>
+					<div class="modal-footer" id="lunr-search-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div>
+		<!-- end:lunr-search-modal.hbs -->		<script src="js/lunr.min.js"></script>
+	
+</body>
+</html>
+<!-- end:source.tmpl.hbs -->

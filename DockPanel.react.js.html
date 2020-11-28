@@ -1,0 +1,289 @@
+<!-- start:source.tmpl.hbs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+		<title>DockPanel.react.js</title>
+		<!--[if lt IE 9]>
+		<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<link href="https://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet">
+		<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
+		<link type="text/css" rel="stylesheet" href="css/prism.min.css">
+		<link type="text/css" rel="stylesheet" href="css/template.min.css">
+		<script type="text/javascript">
+			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"Do MMM YYYY","systemName":"Dash Lumino Components","systemSummary":"Integrate Lumino Widgets into Plotly's Dash to build interactive web applications","systemLogo":"","systemColor":"","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"global","title":"Globals","summary":"All documented globals."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"FooDoc Copyright © 2016 The contributors to the JSDoc3 and FooDoc projects.","linenums":true,"collapseSymbols":false,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":false,"showAccessFilter":true,"analytics":null,"methodHeadingReturns":true,"sort":"linenum, longname, version, since","search":true,"favicon":null,"stylesheets":[],"scripts":[],"monospaceLinks":true,"cleverLinks":true};
+			window.DOCLET_TOC_ENABLED = false;
+			window.DOCLET_AFILTER_ENABLED = false;
+		</script>
+</head>
+<body>
+	<!-- start:navbar.hbs -->
+	<header class="navbar navbar-default navbar-fixed-top navbar-inverse">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="index.html">
+					Dash Lumino Components
+				</a>
+				<!-- displayed on small devices -->
+				<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+			<div class="navbar-collapse collapse" id="topNavigation">
+				<ul class="nav navbar-nav">
+								<li class="dropdown">
+									<a href="list_class.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+									<ul class="dropdown-menu">
+											<li><a href="BoxPanel.html">BoxPanel</a></li>
+											<li><a href="Command.html">Command</a></li>
+											<li><a href="DockPanel.html">DockPanel</a></li>
+											<li><a href="Menu.html">Menu</a></li>
+											<li><a href="MenuBar.html">MenuBar</a></li>
+											<li><a href="Panel.html">Panel</a></li>
+											<li><a href="Separator.html">Separator</a></li>
+											<li><a href="SplitPanel.html">SplitPanel</a></li>
+											<li><a href="TabPanel.html">TabPanel</a></li>
+											<li><a href="Widget.html">Widget</a></li>
+									</ul>
+								</li>
+				</ul>
+					<!-- start:lunr-search-navbar.hbs -->
+					<form class="navbar-form navbar-right" role="search">
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="Search" id="lunr-search-input">
+							<div class="input-group-btn">
+								<button class="btn btn-default" id="lunr-search-submit">
+									<i class="glyphicon glyphicon-search"></i>
+								</button>
+							</div>
+						</div>
+					</form>
+					<!-- start:lunr-search-navbar.hbs -->		</div>
+		</div>
+	</header>
+	<!-- end:navbar.hbs -->		<div class="page-header">
+			<div class="container">
+				<span class="kind">source</span>
+				<h1><span class="name">DockPanel.react.js</span></h1>
+			</div>
+		</div>
+	<div class="container content">
+		<div class="row">
+			<div class="col-md-12 main-content">
+		<section class="source-section">
+			<article></article>
+			<pre class="prettyprint source language-javascript line-numbers"><code class="language-javascript">import PropTypes from 'prop-types';
+import DashLuminoComponent from '../component.js'
+
+import {
+    DockPanel as l_DockPanel, Widget
+} from '@lumino/widgets';
+import { components } from '../registry.js';
+
+/**
+ * A widget which provides a flexible docking area for widgets.  
+ * {@link https://jupyterlab.github.io/lumino/widgets/classes/dockpanel.html}
+ * @hideconstructor
+ * 
+ * @example
+ * import dash_lumino_components as dlc
+ * 
+ * dlc.DockPanel([
+ *   dlc.Widget(
+ *     "Example Content",
+ *     id="initial-widget",
+ *     title="Hallo",
+ *     icon="fa fa-folder-open",
+ *     closable=True)
+ *  ], id="dock-panel")
+ */
+class DockPanel extends DashLuminoComponent {
+
+    constructor(props) {
+        super(props);
+
+        // register a new BoxPanel
+        super.register(new l_DockPanel({
+            mode: props.mode,
+            spacing: props.spacing
+        }), props.addToDom);
+
+
+        this.added_ids = [];
+    }
+
+    /**
+     * Handle the lumino:deleted event a widget creates on closing
+     * Note: There seem to be some probelms with removing dash components!
+     * Currently only the dom elements are moved back to their initial position
+     * and the lumino component is deleted. In the future we want to clean up
+     * the children of the dock also here!
+     * @param {*} msg 
+     * @ignore
+     */
+    handleWidgetEvent(msg) {
+        const widgetid = msg.srcElement.id;
+        const widget = components[widgetid];
+
+        super.move2Dash(widget);
+
+        //const dockid = msg.path[1].id;
+        //const dock = components[dockid];
+        //var that = components[dockid].dash;
+        //let new_children = that.parseChildrenToArray().map(el => el.props._dashprivate_layout).filter( el => el.props.id != widgetid);
+        //console.log(new_children);
+        //const { setProps } = that.props;
+        //setProps({ children: new_children });
+    }
+
+    render() {
+
+        // add the children of the component also to the widget list of the lumino widget
+        if (this.props.children) {
+
+            let current_ids = [];
+            super.parseChildrenToArray().forEach(el => {
+
+
+                // check if react element has all important entries to be a widget
+                if (el.props &amp;&amp; el.props._dashprivate_layout &amp;&amp; el.props._dashprivate_layout.props) {
+
+                    // fill the list of current widgets
+                    current_ids.push(el.props._dashprivate_layout.props.id);
+
+                    //check if the widget is not yet registered
+                    if (!this.added_ids.includes(el.props._dashprivate_layout.props.id)) {
+
+                        super.applyAfterLuminoChildCreation(el, (target, child) => {
+                            target.lumino.addWidget(child.lumino);
+                            child.lumino.node.addEventListener('lumino:deleted', target.dash.handleWidgetEvent);
+                        });
+                        this.added_ids.push(el.props._dashprivate_layout.props.id);
+                    }
+                }
+
+            });
+
+            //check if we have widgets in the list, which need to be closed
+            let widgets_to_delete = this.added_ids.filter(el => !current_ids.includes(el));
+
+            //dispose all the components created for the widget
+            widgets_to_delete.forEach(el => {
+                components[el].lumino.dispose();
+                delete components[el].lumino;
+                delete components[el].dash;
+                delete components[el].div;
+                delete components[el];
+
+                this.added_ids = this.added_ids.filter(id => id !== el);
+            });
+
+
+        } else {
+            // if the children parameter is empty or unset, all open widgets have to be deleted
+            this.added_ids.forEach(el => {
+                components[el].lumino.dispose();
+                delete components[el].lumino;
+                delete components[el].dash;
+                delete components[el].div;
+                delete components[el];
+            });
+            this.added_ids = [];
+        }
+
+        return super.render();
+    }
+
+}
+
+DockPanel.defaultProps = {
+    mode: 'multiple-document',
+    spacing: 4,
+    addToDom: false,
+};
+
+/**
+ * @typedef
+ * @enum {}
+ */
+DockPanel.propTypes = {
+    /**
+     * ID of the widget
+     * @type {string}
+     */
+    id: PropTypes.string.isRequired,
+
+    /**
+     * mode for the dock panel: ("single-document" | "multiple-document")
+     * @type {string}
+     */
+    mode: PropTypes.string,
+
+    /**
+     * The spacing between the items in the panel.
+     * @type {number}
+     */
+    spacing: PropTypes.number,
+
+    /**
+     * bool if the object has to be added to the dom directly
+     * @type {boolean}
+     */
+    addToDom: PropTypes.bool,
+
+    /**
+     * The widgets
+     * @type {Widget[]}
+     */
+    children: PropTypes.node,
+
+    /**
+     * Dash-assigned callback that should be called to report property changes
+     * to Dash, to make them available for callbacks.
+     * @private
+     */
+    setProps: PropTypes.func
+};
+
+/**
+ * @private
+ */
+export default DockPanel;</code></pre>
+		</section>
+			</div>
+		</div>
+	</div>
+	<footer>
+				<div class="copyright">FooDoc Copyright © 2016 The contributors to the JSDoc3 and FooDoc projects.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a> on 28th Nov 2020 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+	</footer>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/clipboard.min.js"></script>
+	<script src="js/prism.min.js"></script>
+	<script src="js/template.min.js"></script>
+		<!-- start:lunr-search-modal.hbs -->
+		<div class="modal fade" id="lunr-search-modal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title">Search results</h4>
+					</div>
+					<div class="modal-body" id="lunr-search-body">
+					</div>
+					<div class="modal-footer" id="lunr-search-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div>
+		<!-- end:lunr-search-modal.hbs -->		<script src="js/lunr.min.js"></script>
+	
+</body>
+</html>
+<!-- end:source.tmpl.hbs -->

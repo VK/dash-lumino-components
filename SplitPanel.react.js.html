@@ -1,0 +1,296 @@
+<!-- start:source.tmpl.hbs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+		<title>SplitPanel.react.js</title>
+		<!--[if lt IE 9]>
+		<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<link href="https://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet">
+		<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
+		<link type="text/css" rel="stylesheet" href="css/prism.min.css">
+		<link type="text/css" rel="stylesheet" href="css/template.min.css">
+		<script type="text/javascript">
+			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"Do MMM YYYY","systemName":"Dash Lumino Components","systemSummary":"Integrate Lumino Widgets into Plotly's Dash to build interactive web applications","systemLogo":"","systemColor":"","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"global","title":"Globals","summary":"All documented globals."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"FooDoc Copyright © 2016 The contributors to the JSDoc3 and FooDoc projects.","linenums":true,"collapseSymbols":false,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":false,"showAccessFilter":true,"analytics":null,"methodHeadingReturns":true,"sort":"linenum, longname, version, since","search":true,"favicon":null,"stylesheets":[],"scripts":[],"monospaceLinks":true,"cleverLinks":true};
+			window.DOCLET_TOC_ENABLED = false;
+			window.DOCLET_AFILTER_ENABLED = false;
+		</script>
+</head>
+<body>
+	<!-- start:navbar.hbs -->
+	<header class="navbar navbar-default navbar-fixed-top navbar-inverse">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="index.html">
+					Dash Lumino Components
+				</a>
+				<!-- displayed on small devices -->
+				<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+			<div class="navbar-collapse collapse" id="topNavigation">
+				<ul class="nav navbar-nav">
+								<li class="dropdown">
+									<a href="list_class.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+									<ul class="dropdown-menu">
+											<li><a href="BoxPanel.html">BoxPanel</a></li>
+											<li><a href="Command.html">Command</a></li>
+											<li><a href="DockPanel.html">DockPanel</a></li>
+											<li><a href="Menu.html">Menu</a></li>
+											<li><a href="MenuBar.html">MenuBar</a></li>
+											<li><a href="Panel.html">Panel</a></li>
+											<li><a href="Separator.html">Separator</a></li>
+											<li><a href="SplitPanel.html">SplitPanel</a></li>
+											<li><a href="TabPanel.html">TabPanel</a></li>
+											<li><a href="Widget.html">Widget</a></li>
+									</ul>
+								</li>
+				</ul>
+					<!-- start:lunr-search-navbar.hbs -->
+					<form class="navbar-form navbar-right" role="search">
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="Search" id="lunr-search-input">
+							<div class="input-group-btn">
+								<button class="btn btn-default" id="lunr-search-submit">
+									<i class="glyphicon glyphicon-search"></i>
+								</button>
+							</div>
+						</div>
+					</form>
+					<!-- start:lunr-search-navbar.hbs -->		</div>
+		</div>
+	</header>
+	<!-- end:navbar.hbs -->		<div class="page-header">
+			<div class="container">
+				<span class="kind">source</span>
+				<h1><span class="name">SplitPanel.react.js</span></h1>
+			</div>
+		</div>
+	<div class="container content">
+		<div class="row">
+			<div class="col-md-12 main-content">
+		<section class="source-section">
+			<article></article>
+			<pre class="prettyprint source language-javascript line-numbers"><code class="language-javascript">import PropTypes from 'prop-types';
+import DashLuminoComponent from '../component.js'
+import { components } from '../registry.js';
+
+import {
+    SplitPanel as l_SplitPanel,
+    Panel as l_Panel,
+    DockPanel,
+    TabPanel,
+    BoxPanel,
+    Panel
+} from '@lumino/widgets';
+
+/**
+ * A panel which arranges its widgets into resizable sections.   
+ * {@link https://jupyterlab.github.io/lumino/widgets/classes/splitpanel.html}
+ * @hideconstructor
+ * 
+ * @example
+ * import dash_lumino_components as dlc
+ * 
+ * dlc.SplitPanel([
+ *    dlc.TabPanel([], id="tab-panel"),
+ *    dlc.DockPanel([], id="dock-panel")
+ * ], id="split-panel")
+ */
+class SplitPanel extends DashLuminoComponent {
+
+    constructor(props) {
+        super(props);
+
+        // register a new SplitPanel
+        let luminoComponent = super.register(new l_SplitPanel({
+            alignment: props.alignment,
+            orientation: props.orientation,
+            spacing: props.spacing
+        }), props.addToDom, false);
+
+        // do a special resize to keep the size of the fixed
+        // side panels at the same size
+        let that = this;
+        window.addEventListener("resize", function () {
+            luminoComponent.update();
+            that.updateSizes();
+        });
+
+        // add the children of the component to the widgets of the panel
+        if (this.props.children) {
+            super.parseChildrenToArray().forEach(el => {
+                super.applyAfterLuminoChildCreation(el, (target, child) => {
+
+
+
+                    let tabBar = child.lumino.tabBar;
+                    let stackedPanel = child.lumino.stackedPanel;
+                    let tabPlacement = child.lumino.tabPlacement;
+                    if (tabBar &amp;&amp; stackedPanel &amp;&amp; tabPlacement &amp;&amp;
+                        (tabPlacement === "left" || tabPlacement === "right")) {
+
+                        // add ids to the special items of the TabPanel
+                        stackedPanel.id = child.dash.props.id + "-stackedPanel";
+                        tabBar.id = child.dash.props.id + "-tabBar";
+
+                        // add the content panel directly
+                        target.lumino.addWidget(stackedPanel);
+
+
+                        //create an extra panel for the tabbar
+                        const tabBarContainer = new l_Panel();
+                        tabBarContainer.addClass('tabBarContainer');
+                        tabBarContainer.addWidget(tabBar);
+                        tabBar.addClass('lm-SideBar');
+                        tabBar.addClass('lm-mod-' + tabPlacement);
+
+                        //store the original component order
+                        let oldWidgets = new Array(...target.lumino.parent.widgets);
+
+                        //add the tabbar panel to the parent container
+                        target.lumino.parent.addWidget(tabBarContainer);
+
+                        //if the tabpanel is placed on the left, we can enshure this
+                        // by adding all old panels again
+                        if (tabPlacement === "left") {
+                            oldWidgets.forEach(el => {
+                                target.lumino.parent.addWidget(el);
+                            })
+                        }
+
+                    } else {
+                        // in all other cases just add the lumino widget to the container
+                        target.lumino.addWidget(child.lumino);
+                    }
+                });
+            })
+        }
+
+    }
+
+
+    /**
+     * Redistribute the sizes if the total size chanches. Panel sizes of split panes are
+     * taken from the width parameter, if they are not hidden.
+     * Panels with undefined width are equally spread.
+     * @private
+     */
+    updateSizes() {
+
+        let w = components[this.id].lumino.widgets.map(el => {
+            if (el.isHidden) {
+                return 0;
+            } else {
+                return components[el.id.replace("-stackedPanel", "")].dash.props.width;
+            }
+        })
+        let sum_w = sum_w = w.reduce((a, c) => Number.isFinite(c) ? a + c : a, 0);
+        let count_undef = w.reduce((a, c) => Number.isFinite(c) ? a : a + 1, 0);
+        let replaceSize = (components[this.id].dash.props.orientation === 'horizontal') ? (window.innerWidth - sum_w) / count_undef : (window.innerHeight - sum_w) / count_undef;
+        replaceSize = Math.max(replaceSize, 100);
+        let sizes = w.map(el => Number.isFinite(el) ? el : replaceSize);
+
+        components[this.id].lumino.setRelativeSizes(sizes);
+    }
+
+
+    render() {
+        return super.render();
+    }
+
+}
+
+SplitPanel.defaultProps = {
+    alignment: 'start',
+    orientation: 'horizontal',
+    spacing: 0,
+    addToDom: false,
+};
+
+/**
+ * @typedef
+ * @enum {}
+ */
+SplitPanel.propTypes = {
+    /**
+     * ID of the widget
+     * @type {string}
+     */
+    id: PropTypes.string.isRequired,
+
+    /**
+     * the content alignment of the layout ("start" | "center" | "end" | "justify")
+     * @type {string}
+     */
+    alignment: PropTypes.string,
+
+    /**
+      * a type alias for a split layout orientation ("horizontal" | "vertical")
+      * @type {string}
+      */
+    orientation: PropTypes.string,
+
+    /**
+     * The spacing between items in the layout
+     * @type {number}
+     */
+    spacing: PropTypes.number,
+
+    /**
+     * bool if the object has to be added to the dom directly
+     * @type {boolean}
+     */
+    addToDom: PropTypes.bool,
+
+    /**
+     * The widgets
+     * @type {Array&lt;DockPanel, TabPanel, BoxPanel, Panel>}
+     */
+    children: PropTypes.node
+};
+
+
+/**
+ * @private
+ */
+export default SplitPanel;</code></pre>
+		</section>
+			</div>
+		</div>
+	</div>
+	<footer>
+				<div class="copyright">FooDoc Copyright © 2016 The contributors to the JSDoc3 and FooDoc projects.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a> on 28th Nov 2020 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+	</footer>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/clipboard.min.js"></script>
+	<script src="js/prism.min.js"></script>
+	<script src="js/template.min.js"></script>
+		<!-- start:lunr-search-modal.hbs -->
+		<div class="modal fade" id="lunr-search-modal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title">Search results</h4>
+					</div>
+					<div class="modal-body" id="lunr-search-body">
+					</div>
+					<div class="modal-footer" id="lunr-search-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div>
+		<!-- end:lunr-search-modal.hbs -->		<script src="js/lunr.min.js"></script>
+	
+</body>
+</html>
+<!-- end:source.tmpl.hbs -->
