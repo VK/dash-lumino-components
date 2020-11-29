@@ -9,7 +9,7 @@ This package integrates [Lumino Widgets](https://github.com/jupyterlab/lumino), 
 
 Build a multi-window dash app with a view of lines of code.
 Check out the [examples](https://github.com/VK/dash-lumino-components/tree/master/examples):
-<img src="examples/multiplots.gif" width="100%" style="border: 1px solid #ccc; box-shadow: 0 5px 10px #00000066"/>
+<img src="https://raw.githubusercontent.com/VK/dash-lumino-components/master/examples/multiplots.gif" width="100%" style="border: 1px solid #ccc; box-shadow: 0 5px 10px #00000066"/>
 ```python
 dlc.MenuBar(menus, id="main-menu"),
 dlc.BoxPanel([
