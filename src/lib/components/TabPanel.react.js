@@ -51,6 +51,7 @@ class TabPanel extends DashLuminoComponent {
 
         // set additional properties
         luminoComponent.tabBar.allowDeselect = props.allowDeselect;
+        luminoComponent.currentIndex = props.currentIndex;
         if (props.allowDeselect) {
             // if the user is allow to deselect items, panel should hide if nothing is selected
             // this is handeled by the _onTabIndexChanged callback
@@ -59,17 +60,6 @@ class TabPanel extends DashLuminoComponent {
                 this
             );
         }
-
-
-        /*
-                console.log(components[this.props.id]);
-                let tabBar = components[this.props.id].lumino.tabBar;
-                let stackedPanel = components[this.props.id].lumino.stackedPanel;
-        
-                console.log(tabBar);
-                console.log(stackedPanel);
-        */
-
 
         // we need to update the tabpanel width once the user resizes the window
         let that = this;

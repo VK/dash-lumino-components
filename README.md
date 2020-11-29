@@ -7,7 +7,22 @@
 
 This package integrates [Lumino Widgets](https://github.com/jupyterlab/lumino), the basis of [JupyterLab](https://github.com/jupyterlab/jupyterlab), into [Plotly's Dash](https://github.com/plotly/dash).
 
-
+Build a multi-window dash app with a view of lines of code.
+Check out the [examples](https://github.com/VK/dash-lumino-components/tree/master/examples):
+<img src="examples/multiplots.gif" width="100%" style="border: 1px solid #ccc; box-shadow: 0 5px 10px #00000066"/>
+```python
+dlc.MenuBar(menus, id="main-menu"),
+dlc.BoxPanel([
+    dlc.SplitPanel([
+        dlc.TabPanel([
+            gapminderPlotsPanel,
+            irisPlotsPanel,
+            tipsPlotsPanel
+        ], id='tab-panel-left'),
+        dlc.DockPanel([], id="dock-panel")
+    ], id="split-panel")
+], id="box-panel", addToDom=True)
+```
 
 
 
