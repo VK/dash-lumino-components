@@ -4,7 +4,7 @@
 ## multiplots.py
 A dash app with a **MenuBar**, **TabPanel** and a main **DockPanel**.
 All widgets in the dock can be placed as needed and are filled with dynamic plots:
-<img src="https://raw.githubusercontent.com/VK/dash-lumino-components/master/examples/multiplots.gif" width="100%" style="border: 1px solid #ccc; box-shadow: 0 5px 10px #00000066"/>
+![multiplots example](https://raw.githubusercontent.com/VK/dash-lumino-components/master/examples/multiplots.gif)
 ```python
 dlc.MenuBar(menus, id="main-menu"),
 dlc.BoxPanel([
