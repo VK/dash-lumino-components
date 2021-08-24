@@ -36,22 +36,18 @@ function get_uuid() {
         lut[d2 & 0x3f | 0x80] + lut[d2 >> 8 & 0xff] + lut[d2 >> 16 & 0xff] + lut[d2 >> 24 & 0xff] +
         lut[d3 & 0xff] + lut[d3 >> 8 & 0xff] + lut[d3 >> 16 & 0xff] + lut[d3 >> 24 & 0xff];
 }
-function props_id(a) {
-    if (a.props.id.constructor == Object) {
-        return a.props.id["type"] + "-" + a.props.id["index"];
-    } else {
-        return a.props.id
-    }
-}
+
 
 function get_id(props) {
     if (props.id.constructor == Object) {
         return props.id["type"] + "-" + props.id["index"];
     } else {
-        return props.id
+        return props.id;
     }
 }
 
+function props_id(a) {
+    return get_id(a.props);
+}
 
-
-export { commands, components, get_uuid, props_id, get_id};
+export { commands, components, get_uuid, props_id, get_id };
