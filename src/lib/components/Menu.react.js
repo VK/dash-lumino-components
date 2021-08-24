@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import DashLuminoComponent from '../component.js'
-import { commands } from '../registry';
+import { commands, props_id } from '../registry';
 
 import {
     Menu as l_Menu
@@ -47,7 +47,7 @@ class Menu extends DashLuminoComponent {
 
                 if (el.namespace === "dash_lumino_components") {
                     if (el.type === "Command") {
-                        menu.addItem({ command: el.props.id });
+                        menu.addItem({ command: props_id(el) });
                     }
                     if (el.type === "Separator") {
                         menu.addItem({ type: 'separator' });

@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import DashLuminoComponent from '../component.js'
-import { components } from '../registry.js';
+import { components, props_id } from '../registry.js';
 
 import {
     SplitPanel as l_SplitPanel,
@@ -60,8 +60,8 @@ class SplitPanel extends DashLuminoComponent {
                         (tabPlacement === "left" || tabPlacement === "right")) {
 
                         // add ids to the special items of the TabPanel
-                        stackedPanel.id = child.dash.props.id + "-stackedPanel";
-                        tabBar.id = child.dash.props.id + "-tabBar";
+                        stackedPanel.id = props_id(child.dash) + "-stackedPanel";
+                        tabBar.id = props_id(child.dash) + "-tabBar";
 
                         // add the content panel directly
                         target.lumino.addWidget(stackedPanel);

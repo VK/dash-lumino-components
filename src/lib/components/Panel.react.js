@@ -1,6 +1,7 @@
 import { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import DashLuminoComponent from '../component.js'
+import { get_id } from '../registry.js';
 
 import {
     Panel as l_Panel
@@ -46,7 +47,7 @@ class Panel extends DashLuminoComponent {
 
         // the component will initially be renderd in an hidden container,
         // then it's moved to the right dom location of lumino
-        this.containerName = props.id + "-container";
+        this.containerName = get_id(props) + "-container";
 
         // add the children of the component to the widgets of the panel
         if (this.props.children) {

@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { Component } from 'react';
-import { commands } from '../registry';
+import { commands, get_id } from '../registry';
 
 /**
  * A widget which displays items as a canonical menu.
@@ -18,7 +18,7 @@ class Command extends Component {
     constructor(props) {
         super(props);
 
-        commands.addCommand(props.id, {
+        commands.addCommand(get_id(props), {
             label: props.label,
             iconClass: props.icon,
             execute: () => {

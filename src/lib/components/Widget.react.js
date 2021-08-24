@@ -5,7 +5,7 @@ import DashLuminoComponent from '../component.js'
 import {
     Widget as l_Widget
 } from '@lumino/widgets';
-import { components } from '../registry.js';
+import { components, get_id } from '../registry.js';
 
 
 /**
@@ -76,7 +76,7 @@ class Widget extends DashLuminoComponent {
 
         // the component will initially be renderd in an hidden container,
         // then it's moved to the right dom location of lumino
-        this.containerName = props.id + "-container";
+        this.containerName = get_id(props) + "-container";
 
 
         // add the children of the component to the widgets of the panel

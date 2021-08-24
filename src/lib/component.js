@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { components, get_uuid } from './registry.js';
+import { components, get_uuid, props_id} from './registry.js';
 import { is } from 'ramda';
 
 import {
@@ -34,7 +34,7 @@ export default class DashLuminoComponent extends Component {
         this.luminoComponent = luminoComponent;
 
         // create an unique id if not available
-        this.id = (this.props.id || this.props.id != undefined) ? this.props.id : get_uuid();
+        this.id = (this.props.id || this.props.id != undefined) ? props_id(this) : get_uuid();
 
         // set the same id to the lumino component
         luminoComponent.id = this.id;
@@ -85,7 +85,7 @@ export default class DashLuminoComponent extends Component {
         function updateLoop() {
             setTimeout(function () {
                 i++;
-                let child_component = components[reactComponent.props._dashprivate_layout.props.id];
+                let child_component = components[props_id(reactComponent.props._dashprivate_layout)];
                 if (target_component && child_component) {
                     func(target_component, child_component);
                 } else if (i < 50) {

@@ -4,7 +4,7 @@ import DashLuminoComponent from '../component.js'
 import {
     DockPanel as l_DockPanel, Widget
 } from '@lumino/widgets';
-import { components } from '../registry.js';
+import { components, props_id } from '../registry.js';
 
 /**
  * A widget which provides a flexible docking area for widgets.  
@@ -77,16 +77,16 @@ class DockPanel extends DashLuminoComponent {
                 if (el.props && el.props._dashprivate_layout && el.props._dashprivate_layout.props) {
 
                     // fill the list of current widgets
-                    current_ids.push(el.props._dashprivate_layout.props.id);
+                    current_ids.push(props_id(el.props._dashprivate_layout));
 
                     //check if the widget is not yet registered
-                    if (!this.added_ids.includes(el.props._dashprivate_layout.props.id)) {
+                    if (!this.added_ids.includes(props_id(el.props._dashprivate_layout))) {
 
                         super.applyAfterLuminoChildCreation(el, (target, child) => {
                             target.lumino.addWidget(child.lumino);
                             child.lumino.node.addEventListener('lumino:deleted', target.dash.handleWidgetEvent);
                         });
-                        this.added_ids.push(el.props._dashprivate_layout.props.id);
+                        this.added_ids.push(props_id(el.props._dashprivate_layout));
                     }
                 }
 
