@@ -132,7 +132,10 @@ class Panel extends DashLuminoComponent {
             super.parseChildrenToArray().forEach(el => {
                 super.applyAfterDomCreation(el, this.containerName, (target, child) => {
                     target.div = child;
-                    target.lumino.node.appendChild(child.children[0]);
+                    try {
+                        target.lumino.node.appendChild(child.children[0]);
+                    } catch (error) {
+                    }
                 });
             })
         }
