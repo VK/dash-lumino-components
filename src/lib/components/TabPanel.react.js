@@ -75,6 +75,7 @@ class TabPanel extends DashLuminoComponent {
                 if (idx != -1) {
                     setProps({ width: rel_sizes[idx] * window.innerWidth });
                 }
+            } catch (e) {
             }
         };
 
