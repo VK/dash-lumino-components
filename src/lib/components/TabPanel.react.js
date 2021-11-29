@@ -116,7 +116,9 @@ class TabPanel extends DashLuminoComponent {
             } else {
                 stackedPanel.show();
             }
-            components[stackedPanel.parent.id].dash.updateSizes();
+            try {
+                components[stackedPanel.parent.id].dash.updateSizes();
+            } catch (e) {}
         } else {
             return;
         }
