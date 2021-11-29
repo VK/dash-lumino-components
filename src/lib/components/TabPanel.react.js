@@ -67,11 +67,14 @@ class TabPanel extends DashLuminoComponent {
         luminoComponent.stackedPanel.onResize = (msg) => {
 
             const { setProps } = that.props;
-            let rel_sizes = st_panel.parent.relativeSizes();
-            let idx = st_panel.parent.widgets.indexOf(st_panel);
+            try
+            {
+                let rel_sizes = st_panel.parent.relativeSizes();
+                let idx = st_panel.parent.widgets.indexOf(st_panel);
 
-            if (idx != -1) {
-                setProps({ width: rel_sizes[idx] * window.innerWidth });
+                if (idx != -1) {
+                    setProps({ width: rel_sizes[idx] * window.innerWidth });
+                }
             }
         };
 
