@@ -1,6 +1,6 @@
 {
   "name": "dash_lumino_components",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "Lumino (JupyterLab) components for Plotly Dash",
   "repository": {
     "type": "git",
