@@ -85,6 +85,7 @@ class DockPanel extends DashLuminoComponent {
                         super.applyAfterLuminoChildCreation(el, (target, child) => {
                             target.lumino.addWidget(child.lumino);
                             child.lumino.node.addEventListener('lumino:deleted', target.dash.handleWidgetEvent);
+                            target.lumino.selectWidget(child.lumino);
                         });
                         this.added_ids.push(props_id(el.props._dashprivate_layout));
                     }
