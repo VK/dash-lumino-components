@@ -1,6 +1,6 @@
 {
   "name": "dash_lumino_components",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "Lumino (JupyterLab) components for Plotly Dash",
   "repository": {
     "type": "git",
@@ -20,7 +20,7 @@
     "build:py_and_r-activated": "(. venv/bin/activate || venv\\scripts\\activate && npm run build:py_and_r)",
     "build": "npm run build:js && npm run build:py_and_r",
     "build:activated": "npm run build:js && npm run build:py_and_r-activated",
-    "doc": "./node_modules/.bin/jsdoc -c ./jsdoc.conf.json"
+    "doc": "jsdoc -c ./jsdoc.conf.json"
   },
   "author": "Viktor Krückl <viktor@krueckl.de>",
   "license": "MIT",
@@ -35,18 +35,18 @@
   },
   "devDependencies": {
     "@babel/core": "^7.5.4",
+    "@babel/eslint-parser": "^7.15.4",
     "@babel/plugin-proposal-object-rest-spread": "^7.5.4",
     "@babel/preset-env": "^7.5.4",
     "@babel/preset-react": "^7.0.0",
-    "@babel/eslint-parser": "^7.15.4",
     "babel-loader": "^8.0.6",
+    "clean-jsdoc-theme": "^3.3.2",
     "copyfiles": "^2.1.1",
     "css-loader": "^3.0.0",
     "eslint-config-prettier": "^6.0.0",
     "eslint-plugin-import": "^2.18.0",
     "eslint-plugin-react": "^7.14.2",
     "file-loader": "^6.2.0",
-    "foodoc": "0.0.9",
     "jsdoc": "^3.6.6",
     "npm": "^6.1.0",
     "prop-types": "^15.7.2",

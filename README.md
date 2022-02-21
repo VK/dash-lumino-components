@@ -8,7 +8,7 @@
 This package integrates [Lumino Widgets](https://github.com/jupyterlab/lumino), the basis of [JupyterLab](https://github.com/jupyterlab/jupyterlab), into [Plotly's Dash](https://github.com/plotly/dash).
 
 Create a multi-window dash app with just a few lines of code.
-Check out the [examples](https://github.com/VK/dash-lumino-components/tree/master/examples):
+Check out the [examples](https://github.com/VK/dash-lumino-components/tree/master/examples):  
 ![multiplots example](https://raw.githubusercontent.com/VK/dash-lumino-components/master/examples/multiplots.gif)
 ```python
 dlc.MenuBar(menus, id="main-menu"),

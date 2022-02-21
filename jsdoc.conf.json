@@ -29,6 +29,15 @@
         "recurse": true,
         "readme": "README.md",
         "private": false,
-        "template": "./node_modules/foodoc/template"
+        "template": "node_modules/clean-jsdoc-theme",
+        "theme_opts": {
+            "menu": [
+                {
+                    "title": "Github",
+                    "link": "https://github.com/VK/dash-lumino-components",
+                    "target": "_blank"
+                }
+            ]
+        }
     }
 }

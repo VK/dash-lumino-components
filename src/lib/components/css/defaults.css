@@ -202,8 +202,15 @@
 }
 
 .lm-Menu-item {
-    display: table-row
+    display: table-row;
+    outline: 0;
+    border: none;
 }
+
+.lm-Menu-item:active, .lm-Menu-item:focus, .lm-Menu-item:hover,   .lm-Menu-item:visited  {
+    outline: 0;
+    border: none;
+  }
 
 .lm-Menu-item.lm-mod-collapsed,.lm-Menu-item.lm-mod-hidden {
     display: none!important
