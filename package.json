@@ -48,7 +48,7 @@
     "eslint-plugin-react": "^7.14.2",
     "file-loader": "^6.2.0",
     "jsdoc": "^3.6.6",
-    "npm": "^6.1.0",
+    "npm": "^9.4.1",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-docgen": "^4.1.1",
