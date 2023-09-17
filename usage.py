@@ -1,6 +1,6 @@
 import dash_lumino_components as dlc
 import dash
-from dash.dependencies import Input, Output, State, MATCH
+from dash.dependencies import Input, Output, State, MATCH, ALL
 import dash_html_components as html
 import dash_core_components as dcc
 import dash_bootstrap_components as dbc
@@ -37,12 +37,13 @@ def update_output_div(input_value):
 
 menus = [
     dlc.Menu([
-        dlc.Command(id="com:openwidget", label="Open", icon="fa fa-plus"),
+        dlc.Command(id={"type": "com:widget", "type": "open"},
+                    label="Open", icon="fa fa-plus"),
         dlc.Separator(),
         dlc.Menu([
-            dlc.Command(id="com:closeall", label="Close All",
+            dlc.Command(id={"type": "com:widget", "type": "closeall"}, label="Close All",
                         icon="fa fa-minus"),
-            dlc.Command(id="com:closeone", label="Close One",
+            dlc.Command(id={"type": "com:widget", "type": "closeone"}, label="Close One",
                         icon="fa fa-minus"),
         ], id="extraMenu", title="Extra"
         )
@@ -108,27 +109,29 @@ def extra_click(index):
     return "tabindex: " + str(index)
 
 
-@app.callback(Output('dock-panel', 'children'), [Input('com:openwidget', 'n_called'), Input('com:closeall', 'n_called'), Input('com:closeone', 'n_called')], [State('dock-panel', 'children')])
-def open_widget(open_value, close_value, closeone_value, widgets):
+@app.callback(Output('dock-panel', 'children'), [
+    Input({"type": "com:widget", "type": ALL}, "n_called")
+], [State('dock-panel', 'children')])
+def open_widget(menubutton, widgets):
 
-    print(widgets)
+    open_value = len(widgets)
+
     widgets = [w for w in widgets if not(
         "props" in w and "deleted" in w["props"] and w["props"]["deleted"])]
 
-    print(widgets)
     ctx = dash.callback_context
-    print(ctx.triggered)
+    print("triggered", ctx.triggered)
 
-    if "prop_id" in ctx.triggered[0] and ctx.triggered[0]["prop_id"] == "com:openwidget.n_called":
+    if "prop_id" in ctx.triggered[0] and ctx.triggered[0]["prop_id"] == '{"type":"open"}.n_called':
         if open_value is not None:
             new_widget = dlc.Widget(id="newWidget-"+str(open_value), title="Test Widget " +
                                     str(open_value), icon="fa fa-folder-open", children=[get_test_div("testwidget" + str(open_value))])
             return [*widgets, new_widget]
 
-    if "prop_id" in ctx.triggered[0] and ctx.triggered[0]["prop_id"] == "com:closeall.n_called":
+    if "prop_id" in ctx.triggered[0] and ctx.triggered[0]["prop_id"] == '{"type":"closeall"}.n_called':
         return []
 
-    if "prop_id" in ctx.triggered[0] and ctx.triggered[0]["prop_id"] == "com:closeone.n_called" and len(widgets) > 0:
+    if "prop_id" in ctx.triggered[0] and ctx.triggered[0]["prop_id"] == '{"type":"closeone"}.n_called' and len(widgets) > 0:
         del_idx = random.randint(0, len(widgets)-1)
         print("delete at index: {}".format(del_idx))
         del widgets[del_idx]

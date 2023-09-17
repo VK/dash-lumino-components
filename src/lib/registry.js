@@ -6,6 +6,7 @@ import {
     Panel as l_Panel,
 } from '@lumino/widgets';
 import { string } from 'prop-types';
+import { none } from 'ramda';
 
 
 /**
@@ -39,11 +40,22 @@ function get_uuid() {
 
 
 function get_id(props) {
-    if (props.id.constructor == Object) {
-        return props.id["type"] + "-" + props.id["index"];
-    } else {
-        return props.id;
+    if (typeof props.id === 'string') {
+        try {
+            const idObj = JSON.parse(props.id);
+            if (idObj.constructor === Object) {
+                return Object.values(idObj).join("-");
+            }
+        } catch (error) {
+            // Parsing as JSON failed, return the original string
+            return props.id;
+        }
+    } else if (props.id.constructor === Object) {
+        return Object.values(props.id).join("-");
     }
+    
+    // If no valid ID can be extracted, return null or adjust as needed.
+    return null;
 }
 
 function props_id(a) {

@@ -53,7 +53,7 @@ Command.propTypes = {
      * The id of the command
      * @type {string}
      */
-    id: PropTypes.string,
+    id: PropTypes.any,
 
     /**
      * The label of the command
