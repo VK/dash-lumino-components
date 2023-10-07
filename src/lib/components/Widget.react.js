@@ -25,7 +25,7 @@ class LuminoWidget extends l_Widget {
         //Note: this might dissapear if widgets can be deleted from the DockPanel
         // children in the future!
         let { setProps } = components[this.id].dash.props;
-        setProps({ deleted: true });
+        setProps({ children: [], deleted: true });
 
 
         dom_element.dispatchEvent(event);
