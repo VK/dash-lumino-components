@@ -5,6 +5,7 @@ import {
     DockPanel as l_DockPanel, Widget
 } from '@lumino/widgets';
 import { components, props_id } from '../registry.js';
+import { any } from 'ramda';
 
 /**
  * A widget which provides a flexible docking area for widgets.  
@@ -38,10 +39,11 @@ class DockPanel extends DashLuminoComponent {
 
 
         this.added_ids = [];
+        this.id = this.props.id;
     }
 
     /**
-     * Handle the lumino:deleted event a widget creates on closing
+     * Handle lumnino widget events like lumino:deleted, lumino:activated
      * Note: There seem to be some probelms with removing dash components!
      * Currently only the dom elements are moved back to their initial position
      * and the lumino component is deleted. In the future we want to clean up
@@ -53,7 +55,15 @@ class DockPanel extends DashLuminoComponent {
         const widgetid = msg.srcElement.id;
         const widget = components[widgetid];
 
-        super.move2Dash(widget);
+        if (msg.type === "lumino:deleted") {
+            super.move2Dash(widget);
+        }
+
+        const parentid = widget.lumino._parent.node.id;
+        const that = components[parentid].dash;
+        const { setProps } = that.props;
+        setProps({ widgetEvent: { id: widgetid, type: msg.type, timestamp: +new Date } });
+
 
         //const dockid = msg.path[1].id;
         //const dock = components[dockid];
@@ -85,9 +95,19 @@ class DockPanel extends DashLuminoComponent {
                         super.applyAfterLuminoChildCreation(el, (target, child) => {
                             target.lumino.addWidget(child.lumino);
                             child.lumino.node.addEventListener('lumino:deleted', target.dash.handleWidgetEvent);
+                            child.lumino.node.addEventListener('lumino:activated', target.dash.handleWidgetEvent);
                             target.lumino.selectWidget(child.lumino);
                         });
                         this.added_ids.push(props_id(el.props._dashprivate_layout));
+
+                        const { setProps } = this.props;
+                        setProps({
+                            widgetEvent: {
+                                id: props_id(el.props._dashprivate_layout),
+                                type: "lumino:activated",
+                                timestamp: +new Date
+                            }
+                        });
                     }
                 }
 
@@ -165,6 +185,13 @@ DockPanel.propTypes = {
      * @type {Widget[]}
      */
     children: PropTypes.node,
+
+
+    /**
+     * Widget events
+     * @type {PropTypes.any}
+     */
+    widgetEvent: PropTypes.any,
 
     /**
      * Dash-assigned callback that should be called to report property changes

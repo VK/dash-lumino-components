@@ -31,6 +31,15 @@ class LuminoWidget extends l_Widget {
         dom_element.dispatchEvent(event);
         super.onCloseRequest(msg);
     }
+
+    onActivateRequest(msg) {
+        const dom_element = document.getElementById(this.id);
+        const event = new CustomEvent('lumino:activated', { msg: msg, id: this.id });
+        dom_element.dispatchEvent(event);
+        super.onActivateRequest(msg);        
+    }
+
+
 };
 
 

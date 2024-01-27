@@ -5,6 +5,7 @@ import dash_html_components as html
 import dash_core_components as dcc
 import dash_bootstrap_components as dbc
 import random
+import json
 
 
 external_stylesheets = [
@@ -57,7 +58,8 @@ app.layout = html.Div([
                 [
                     dlc.Panel(id="tab-A", children=html.Div([
                         dbc.Button("Open Plot", id="button2",
-                                   style={"width": "100%"})
+                                   style={"width": "100%"}),
+                        html.Div("events:", id="widgetEvent-output")
                     ]), label="Plots", icon="fa fa-bar-chart"),
                     dlc.Panel(id="tab-B", children=html.Div("Dummy Panel B"),
                               label="", icon="fa fa-plus"),
@@ -140,6 +142,9 @@ def open_widget(menubutton, widgets):
 
     return widgets
 
+@app.callback(Output('widgetEvent-output', 'children'), Input('dock-panel', 'widgetEvent'))
+def widgetEvent(event):
+    return json.dumps(event)
 
 if __name__ == '__main__':
     app.run_server(debug=True)
