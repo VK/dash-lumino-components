@@ -1,11 +1,10 @@
 import dash
-import dash_core_components as dcc
+from dash import Input, Output, State, html, dcc
 import dash_lumino_components as dlc
-import dash_html_components as html
 import dash_bootstrap_components as dbc
-from dash.dependencies import Input, Output, State
 import plotly.express as px
 import random
+import json
 
 df_iris = px.data.iris()
 df_gapminder = px.data.gapminder()
@@ -160,6 +159,11 @@ tipsPlotsPanel = dlc.Panel([
 ], id="tips-plots-panel", label="Tips", icon="fa fa-money")
 
 
+configPanel = dlc.Panel([
+    html.H3("Dock panel layout"),
+    html.Pre("", id="config-json")
+], id="config-panel", label="Layout", icon="fa fa-gear")
+
 # create the main layout of the app
 app.layout = html.Div([
     dlc.MenuBar(menus, id="main-menu"),
@@ -168,7 +172,8 @@ app.layout = html.Div([
             dlc.TabPanel([
                 gapminderPlotsPanel,
                 irisPlotsPanel,
-                tipsPlotsPanel
+                tipsPlotsPanel,
+                configPanel,
             ],
                 id='tab-panel-left',
                 tabPlacement="left",
@@ -181,18 +186,24 @@ app.layout = html.Div([
 ])
 
 # a single callback creates different the different plot widgets
-@app.callback(
-    Output('dock-panel', 'children'),
+@app.callback([
+        Output('dock-panel', 'children'),
+        Output('config-json', 'children'),
+    ],
     [
         *[Input(w["id"]+"-button", "n_clicks") for w in widgetCalls],
         Input("com:closeAll", "n_called"),
-        Input("com:closeRandom", "n_called")
+        Input("com:closeRandom", "n_called"),
+        Input('dock-panel', 'widgetEvent')
     ],
     [State('dock-panel', 'children')])
 def handle_widget(*argv):
 
     # the last argument is the current state of the dock-panel
     widgets = argv[-1]
+
+    # the second last is the widget event
+    event = argv[-2]
 
     # remove all closed widgets
     widgets = [w for w in widgets if not(
@@ -225,8 +236,15 @@ def handle_widget(*argv):
         del_idx = random.randint(0, len(widgets)-1)
         del widgets[del_idx]
 
-    return widgets
+    status = {
+        "event": event,
+        "open": [
+            w["props"]["id"] for w in widgets if "props" in w and "id" in w["props"]
+        ]
+    }
+
+    return widgets, json.dumps(status, indent=2)
 
 #start the app
 if __name__ == '__main__':
-    app.run_server(debug=False)
+    app.run_server(debug=True)
