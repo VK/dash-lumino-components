@@ -239,7 +239,7 @@ def handle_widget(*argv):
     status = {
         "event": event,
         "open": [
-            w["props"]["id"] for w in widgets if "props" in w and "id" in w["props"]
+            {k:v for k,v in w["props"].items() if k not in ["children"]} for w in widgets if "props" in w and "id" in w["props"]
         ]
     }
 
