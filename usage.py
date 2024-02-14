@@ -1,8 +1,6 @@
 import dash_lumino_components as dlc
 import dash
-from dash.dependencies import Input, Output, State, MATCH, ALL
-import dash_html_components as html
-import dash_core_components as dcc
+from dash import Input, Output, State, MATCH, ALL, html, dcc
 import dash_bootstrap_components as dbc
 import random
 import json
