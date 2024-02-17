@@ -1,6 +1,7 @@
 import dash_lumino_components as dlc
 import dash
 from dash import Input, Output, State, MATCH, ALL, html, dcc
+from dash.exceptions import PreventUpdate
 import dash_bootstrap_components as dbc
 import random
 import json
@@ -57,12 +58,22 @@ app.layout = html.Div([
                     dlc.Panel(id="tab-A", children=html.Div([
                         dbc.Button("Open Plot", id="button2",
                                    style={"width": "100%"}),
-                        html.Div("events:", id="widgetEvent-output")
                     ]), label="Plots", icon="fa fa-bar-chart"),
                     dlc.Panel(id="tab-B", children=html.Div("Dummy Panel B"),
                               label="", icon="fa fa-plus"),
                     dlc.Panel(
-                        id="tab-C", children=html.Div("Dummy Panel C"), label="Test"),
+                        id="tab-C", children=html.Div([
+                            dbc.Button("Stacked", id="stacked-layout-btn", style={"width": "100%", "marginBottom": "1em"}),
+                            dbc.Button("Vertical", id="vertical-layout-btn", style={"width": "100%", "marginBottom": "1em"}),
+                            dbc.Button("Horizontal", id="horizontal-layout-btn", style={"width": "100%"}),
+
+                            html.H5("Latest Event:"),
+                            html.Div("events", id="widgetEvent-output"),
+
+                            html.H5("Current Layout:"),
+                            html.Div("layout", id="widgetEvent-layout")
+
+                        ]), label="Layout"),
                 ],
                 id='tab-panel-left',
                 tabPlacement="left",
@@ -140,9 +151,41 @@ def open_widget(menubutton, widgets):
 
     return widgets
 
-@app.callback(Output('widgetEvent-output', 'children'), Input('dock-panel', 'widgetEvent'))
+@app.callback(
+        Output('widgetEvent-output', 'children'),
+        Input('dock-panel', 'widgetEvent')
+)
 def widgetEvent(event):
     return json.dumps(event)
+
+
+@app.callback(
+    Output('dock-panel', 'layout'),
+    Input('stacked-layout-btn', 'n_clicks'),
+    Input('horizontal-layout-btn', 'n_clicks'),
+    Input('vertical-layout-btn', 'n_clicks')
+)
+def update_layout(stacked, horizontal, vertical):
+
+    ctx = dash.callback_context
+    print("triggered", ctx.triggered)
+
+    if "stacked" in ctx.triggered[0]["prop_id"]:
+        return {"main": {"type": "tab-area", "widgets": ["initial-widget2", "initial-widget"], "currentIndex": 1}}
+    if "horizontal" in ctx.triggered[0]["prop_id"]:
+        return {"main": {"type": "split-area", "orientation": "horizontal", "children": [{"type": "tab-area", "widgets": ["initial-widget2"], "currentIndex": 0}, {"type": "tab-area", "widgets": ["initial-widget"], "currentIndex": 0}], "sizes": [0.5, 0.5]}}
+    if "vertical" in ctx.triggered[0]["prop_id"]:
+        return {"main": {"type": "split-area", "orientation": "vertical", "children": [{"type": "tab-area", "widgets": ["initial-widget2"], "currentIndex": 0}, {"type": "tab-area", "widgets": ["initial-widget"], "currentIndex": 0}], "sizes": [0.5, 0.5]}}
+
+    raise PreventUpdate
+
+@app.callback(
+        Output('widgetEvent-layout', 'children'),
+        Input('dock-panel', 'layout')
+)
+def widgetEvent(layout):
+    print(layout)
+    return json.dumps(layout)
 
 if __name__ == '__main__':
     app.run_server(debug=True)
