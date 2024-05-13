@@ -61,6 +61,15 @@ class TabPanel extends DashLuminoComponent {
             );
 
             setTimeout(this._onTabIndexChanged, 100);
+            setTimeout(this._onTabIndexChanged, 200);
+            setTimeout(this._onTabIndexChanged, 300);
+            setTimeout(this._onTabIndexChanged, 400);
+            setTimeout(this._onTabIndexChanged, 500);
+            setTimeout(this._onTabIndexChanged, 600);
+            setTimeout(this._onTabIndexChanged, 700);
+            setTimeout(this._onTabIndexChanged, 800);
+            setTimeout(this._onTabIndexChanged, 900);
+            setTimeout(this._onTabIndexChanged, 1000);
         }
 
         // we need to update the tabpanel width once the user resizes the window
