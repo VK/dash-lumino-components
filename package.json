@@ -25,7 +25,7 @@
   "author": "Viktor Krückl <viktor@krueckl.de>",
   "license": "MIT",
   "dependencies": {
-    "@lumino/commands": "^1.11.4",
+    "@lumino/commands": "^1.20.1",
     "@lumino/default-theme": "^0.5.1",
     "@lumino/dragdrop": "^1.6.4",
     "@lumino/messaging": "^1.4.3",
