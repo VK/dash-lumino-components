@@ -1,3 +1,4 @@
 # dash is required to call `build:py`
 dash[dev]>=2.15.0
 dash-bootstrap-components
+urllib3>=2.2.2 # not directly required, pinned by Snyk to avoid a vulnerability
