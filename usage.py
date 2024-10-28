@@ -97,19 +97,21 @@ app.layout = html.Div([
                 ],
                 id='tab-panel-right',
                 tabPlacement="right",
-                allowDeselect=True)
+                allowDeselect=True,
+                currentIndex=-1
+            )
 
         ], id="splitPanel")
     ], "boxPanel", addToDom=True)
 ])
 
 
-@app.callback(Output('tab-panel-right', 'currentIndex'),  Input('button2', 'n_clicks'))
-def extra_click(n_clicks):
-    # if n_clicks:
-    #    return html.Div("clicked: #" + str(n_clicks), style={"background": "#f99"})
-    # return "Click me"
-    return 0 if n_clicks else -1
+# @app.callback(Output('tab-panel-right', 'currentIndex'),  Input('button2', 'n_clicks'))
+# def extra_click(n_clicks):
+#     # if n_clicks:
+#     #    return html.Div("clicked: #" + str(n_clicks), style={"background": "#f99"})
+#     # return "Click me"
+#     return 0 if n_clicks else -1
 
 
 @app.callback(Output('tab-D-output', 'children'),  Input('tab-panel-left', 'currentIndex'))

@@ -67,7 +67,8 @@ module.exports = (env, argv) => {
                         {
                             loader: 'style-loader',
                             options: {
-                                insertAt: 'top'
+                                // Remove 'insertAt' and use a valid option if needed
+                                injectType: 'styleTag' // Example of a valid option
                             }
                         },
                         {
