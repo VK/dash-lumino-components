@@ -18,7 +18,7 @@ jobs:
         with:
           node-version: 18.x
       - name: Install dependencies
-        run: npm install
+        run: npm install --force
       - name: Set up Python 3.11
         uses: actions/setup-python@v1
         with:

@@ -18,7 +18,7 @@ jobs:
           node-version: '18.x'
 
       - name: Npm install
-        run: npm install
+        run: npm install --force
         
       - name: Npm build docs
         run: npm run doc
