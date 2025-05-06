@@ -1,3 +1,4 @@
 dash
 dash-lumino-components
 dash-bootstrap-components
+setuptools>=78.1.1 # not directly required, pinned by Snyk to avoid a vulnerability
